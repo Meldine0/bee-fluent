@@ -18,21 +18,21 @@ export function About() {
               >
                 <div className="lg:max-w-lg">
                   <h2 className="text-sm font-bold uppercase tracking-widest text-gray-400 mb-4">
-                    L'histoire
+                    Pourquoi Bee Fluent
                   </h2>
                   <p className="mt-2 font-heading text-4xl font-extrabold tracking-tight text-[var(--color-bee-black)] sm:text-5xl leading-tight">
-                    "Je connais la grammaire, mais je bloque à l'oral."
+                    L'anglais pour tous — du CP au monde professionnel.
                   </p>
 
                   <div className="mt-10 space-y-6 text-lg leading-relaxed text-gray-600">
                     <p>
-                      C'est la phrase que j'entends le plus souvent. Après des années d'enseignement classique, j'ai réalisé que le système scolaire français nous apprend à analyser la langue, pas à la parler.
+                      J'accompagne des enfants dès 7 ans, des ados qui préparent leur brevet ou leur bac, des étudiants en école de commerce, et des adultes qui veulent progresser dans leur carrière ou partir à l'étranger. Ce qui les relie ? Ils veulent tous parler — vraiment parler — et pas juste cocher des cases.
                     </p>
                     <p>
-                      J'ai créé Bee Fluent pour casser ce schéma. L'anglais n'est pas un code à déchiffrer, c'est un muscle à entraîner. Et comme tout entraînement, il faut de la régularité, de la rigueur, et un coach qui vous pousse hors de votre zone de confort.
+                      J'ai créé Bee Fluent parce que le système scolaire apprend à analyser la langue, pas à la vivre. Peu importe l'âge, la méthode est la même : on parle, on pratique, on construit des automatismes. Ce qui change, c'est le rythme, le ton et les exercices — adaptés à chaque profil.
                     </p>
                     <p className="font-medium text-[var(--color-bee-black)] border-l-4 border-[var(--color-bee-yellow)] pl-6">
-                      Mon rôle n'est pas de vous donner des listes de vocabulaire. Mon rôle est de vous faire parler, de vous corriger en direct, et de vous donner confiance.
+                      Je ne suis pas là pour noter. Je suis là pour donner confiance — que vous ayez 8 ans ou 45 ans.
                     </p>
                   </div>
 
@@ -47,7 +47,7 @@ export function About() {
                       </div>
                       <div>
                         <p className="font-heading font-bold text-xl text-[var(--color-bee-black)]">Sarah Beale</p>
-                        <p className="text-gray-500">Fondatrice de Bee Fluent</p>
+                        <p className="text-gray-500">Coach & Fondatrice de Bee Fluent</p>
                       </div>
                     </div>
                   </div>
@@ -76,7 +76,7 @@ export function About() {
                   <div className="absolute -bottom-10 -left-10 bg-[var(--color-bee-black)] text-white p-8 rounded-[2rem] shadow-xl max-w-xs hidden sm:block">
                     <Quote className="h-8 w-8 text-[var(--color-bee-yellow)] mb-4 opacity-50" />
                     <p className="font-heading font-bold text-2xl mb-2 leading-snug">
-                      L'erreur est la preuve que vous essayez.
+                      Si vous ne faites pas d'erreurs, vous n'apprenez pas.
                     </p>
                   </div>
                 </div>
@@ -96,9 +96,9 @@ export function About() {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <span className="text-sm font-bold uppercase tracking-widest text-gray-400 mb-4 block">Nos valeurs</span>
+            <span className="text-sm font-bold uppercase tracking-widest text-gray-400 mb-4 block">La différence Bee Fluent</span>
             <h2 className="font-heading text-4xl font-extrabold text-[var(--color-bee-black)]">
-              Ce qui nous rend différents
+              Pas un cours standard. Un coaching sur-mesure.
             </h2>
           </motion.div>
 
@@ -106,18 +106,18 @@ export function About() {
             {[
               {
                 icon: MessageCircle,
-                title: "Parler avant tout",
-                desc: "80% du temps de parole est pour vous. On apprend en faisant, pas en écoutant.",
+                title: "On parle dès la 1ère minute",
+                desc: "Enfants, ados, adultes — tout le monde parle dès qu'on commence. Pas de slides, pas de théorie. On apprend en faisant.",
               },
               {
                 icon: Heart,
-                title: "Bienveillance totale",
-                desc: "Zéro jugement, 100% encouragement. L'erreur est votre meilleure alliée.",
+                title: "Zéro jugement, quel que soit l'âge",
+                desc: "Un enfant de 8 ans ou un adulte de 50 ans — tout le monde a le droit de se tromper, d'hésiter, de recommencer. C'est ça qui fait progresser.",
               },
               {
                 icon: BookOpen,
-                title: "Sur-mesure absolu",
-                desc: "Chaque programme est construit autour de VOS objectifs, votre rythme, votre vie.",
+                title: "Adapté à chaque profil",
+                desc: "Bac, TOEIC, entretien, voyage, curiosité — le programme change selon l'objectif. L'âge n'est jamais un obstacle.",
               },
             ].map((value, i) => (
               <motion.div

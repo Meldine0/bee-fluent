@@ -57,8 +57,49 @@ export function LevelTest() {
     setStep('result');
   };
 
-  const sessionsNeeded = (questions.length - score) * 2;
   const percentage = questions.length > 0 ? Math.round((score / questions.length) * 100) : 0;
+
+  const getLevel = () => {
+    if (percentage >= 90) return { label: 'C1', name: 'Avancé' };
+    if (percentage >= 70) return { label: 'B2', name: 'Intermédiaire supérieur' };
+    if (percentage >= 50) return { label: 'B1', name: 'Intermédiaire' };
+    if (percentage >= 30) return { label: 'A2', name: 'Élémentaire' };
+    return { label: 'A1', name: 'Débutant' };
+  };
+
+  const getResult = () => {
+    if (percentage >= 90) return {
+      title: 'Très bon niveau !',
+      desc: 'Votre anglais est solide. Mais entre un bon niveau et être vraiment à l\'aise à l\'oral, il y a souvent un fossé. L\'accent, le rythme, la spontanéité — c\'est exactement là qu\'on intervient.',
+      recommendation: 'Pour peaufiner votre fluidité et votre accent, une séance découverte ou un pack de 5 sessions ciblées suffit généralement à faire la différence.',
+      pack: '/reservation?pack=single',
+      packLabel: 'Essayer une séance découverte',
+    };
+    if (percentage >= 70) return {
+      title: 'De solides bases !',
+      desc: 'Vous comprenez bien et vous vous débrouillez. Mais à l\'oral, vous cherchez vos mots, vous hésitez, vous traduisez encore dans votre tête. C\'est exactement ce sur quoi on travaille.',
+      recommendation: 'Avec 5 séances de coaching ciblé, la plupart des élèves à votre niveau atteignent une vraie aisance à l\'oral et arrêtent de se bloquer.',
+      pack: '/reservation?pack=5',
+      packLabel: 'Démarrer le Pack Intensif',
+    };
+    if (percentage >= 50) return {
+      title: 'Un niveau intermédiaire à débloquer.',
+      desc: 'Vous avez les bases mais elles restent fragiles. À l\'oral, le manque de réflexes crée de l\'hésitation — et ça se ressent. La bonne nouvelle : ce niveau se débloque vite avec la bonne méthode.',
+      recommendation: 'On recommande le Pack Intensif (5 séances) pour reconstruire vos automatismes et gagner rapidement en confiance. La plupart des élèves à votre niveau voient la différence dès la 3e séance.',
+      pack: '/reservation?pack=5',
+      packLabel: 'Démarrer le Pack Intensif',
+    };
+    return {
+      title: 'C\'est le bon moment pour (re)partir.',
+      desc: 'Votre anglais a besoin d\'une remise à niveau sérieuse — et c\'est une chance. Repartir de zéro avec la bonne méthode, c\'est éviter d\'ancrer de mauvaises habitudes pour toujours.',
+      recommendation: 'On recommande fortement notre programme Immersion Totale (10 séances). C\'est le format qui donne les meilleurs résultats pour les niveaux débutants : progression rapide, bases solides, aucune mauvaise habitude.',
+      pack: '/reservation?pack=full',
+      packLabel: 'Démarrer l\'Immersion Totale',
+    };
+  };
+
+  const level = getLevel();
+  const result = getResult();
 
   return (
     <div className="min-h-screen bg-[#FDFCF8] pt-32 pb-24 px-4 sm:px-6 lg:px-8 flex items-center justify-center relative">
@@ -241,68 +282,70 @@ export function LevelTest() {
               key="result"
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
-              className="bg-white rounded-[2rem] p-8 md:p-12 shadow-xl border border-gray-100 text-center"
+              className="bg-white rounded-[2rem] p-8 md:p-12 shadow-xl border border-gray-100"
             >
-              <div className="mb-8">
-                <span className="block text-sm font-bold uppercase tracking-wider text-gray-400 mb-6">
-                  Votre score
-                </span>
-                <div className="relative inline-flex items-center justify-center w-36 h-36">
-                  {/* Circular progress */}
-                  <svg className="absolute inset-0 w-full h-full -rotate-90" viewBox="0 0 100 100">
-                    <circle cx="50" cy="50" r="42" fill="none" stroke="#F3F4F6" strokeWidth="6" />
-                    <motion.circle
-                      cx="50" cy="50" r="42" fill="none"
-                      stroke="#FACC15"
-                      strokeWidth="6"
-                      strokeLinecap="round"
-                      strokeDasharray={`${percentage * 2.64} 264`}
-                      initial={{ strokeDasharray: "0 264" }}
-                      animate={{ strokeDasharray: `${percentage * 2.64} 264` }}
-                      transition={{ duration: 1.5, ease: "easeOut" }}
-                    />
-                  </svg>
-                  <span className="font-heading text-4xl font-extrabold text-[var(--color-bee-black)]">
-                    {score}<span className="text-xl text-gray-400">/{questions.length}</span>
-                  </span>
+              {/* Score + Level */}
+              <div className="flex flex-col sm:flex-row items-center gap-8 mb-10 pb-10 border-b border-gray-100">
+                <div className="flex flex-col items-center">
+                  <span className="block text-xs font-bold uppercase tracking-wider text-gray-400 mb-4">Votre score</span>
+                  <div className="relative inline-flex items-center justify-center w-32 h-32">
+                    <svg className="absolute inset-0 w-full h-full -rotate-90" viewBox="0 0 100 100">
+                      <circle cx="50" cy="50" r="42" fill="none" stroke="#F3F4F6" strokeWidth="6" />
+                      <motion.circle
+                        cx="50" cy="50" r="42" fill="none"
+                        stroke="#FACC15"
+                        strokeWidth="6"
+                        strokeLinecap="round"
+                        strokeDasharray={`${percentage * 2.64} 264`}
+                        initial={{ strokeDasharray: "0 264" }}
+                        animate={{ strokeDasharray: `${percentage * 2.64} 264` }}
+                        transition={{ duration: 1.5, ease: "easeOut" }}
+                      />
+                    </svg>
+                    <span className="font-heading text-3xl font-extrabold text-[var(--color-bee-black)]">
+                      {score}<span className="text-lg text-gray-400">/{questions.length}</span>
+                    </span>
+                  </div>
+                </div>
+
+                <div className="flex-1 text-center sm:text-left">
+                  <div className="inline-flex items-center gap-2 bg-yellow-50 border border-yellow-200 rounded-full px-4 py-1.5 mb-3">
+                    <span className="font-heading font-extrabold text-yellow-800 text-lg">{level.label}</span>
+                    <span className="text-yellow-700 text-sm font-medium">— {level.name}</span>
+                  </div>
+                  <h2 className="font-heading text-2xl md:text-3xl font-extrabold text-[var(--color-bee-black)] mb-3">
+                    {result.title}
+                  </h2>
+                  <p className="text-gray-600 leading-relaxed">
+                    {result.desc}
+                  </p>
                 </div>
               </div>
 
-              <h2 className="text-2xl font-bold text-[var(--color-bee-black)] mb-4">
-                {score >= questions.length * 0.8 ? "Excellent niveau !" :
-                 score >= questions.length * 0.5 ? "Vous avez de bonnes bases !" :
-                 "Il y a du potentiel !"}
-              </h2>
-
-              <p className="text-lg text-gray-600 mb-8 max-w-lg mx-auto">
-                {score >= questions.length * 0.8
-                  ? "Vous maîtrisez déjà bien la langue. Quelques séances suffiront pour peaufiner votre accent et votre fluidité à l'oral."
-                  : score >= questions.length * 0.5
-                  ? "Vous comprenez l'essentiel mais vous manquez probablement de pratique à l'oral pour être totalement à l'aise."
-                  : "C'est le moment idéal pour reprendre les bases et construire une fondation solide sans mauvaises habitudes."}
-              </p>
-
-              <div className="bg-gradient-to-r from-yellow-50 to-yellow-100/50 rounded-2xl p-6 mb-10 border border-yellow-100">
-                <h3 className="font-heading font-bold text-gray-900 mb-2">Notre recommandation :</h3>
-                <p className="text-gray-700">
-                  {score === questions.length
-                    ? "Vous êtes déjà au top ! Mais si vous voulez pratiquer, on est là."
-                    : `Pour atteindre un niveau de confiance optimal, nous estimons que vous auriez besoin d'environ ${sessionsNeeded} séances de coaching personnalisé.`}
+              {/* Recommendation */}
+              <div className="bg-gradient-to-br from-yellow-50 to-yellow-100/40 rounded-2xl p-6 mb-8 border border-yellow-100">
+                <span className="text-xs font-bold uppercase tracking-widest text-yellow-700 mb-3 block">Notre recommandation personnalisée</span>
+                <p className="text-gray-800 leading-relaxed">
+                  {result.recommendation}
                 </p>
               </div>
 
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Link to="/offres">
-                  <Button size="lg" className="w-full sm:w-auto h-14 px-8 text-lg rounded-full shadow-lg shadow-yellow-500/15">
-                    Voir les offres de coaching
+              {/* CTAs */}
+              <div className="flex flex-col sm:flex-row gap-4">
+                <Link to={result.pack} className="flex-1">
+                  <Button size="lg" className="w-full h-14 text-base rounded-full shadow-lg shadow-yellow-500/15">
+                    {result.packLabel} <ArrowRight className="ml-2 h-4 w-4" />
                   </Button>
                 </Link>
-                <Link to="/">
-                  <Button variant="outline" size="lg" className="w-full sm:w-auto h-14 px-8 text-lg rounded-full">
-                    Retour à l'accueil
+                <Link to="/offres">
+                  <Button variant="outline" size="lg" className="w-full h-14 px-8 text-base rounded-full">
+                    Voir tous les programmes
                   </Button>
                 </Link>
               </div>
+              <p className="text-xs text-center text-gray-400 mt-6">
+                Résultat envoyé à votre adresse email. Un coach vous contactera si vous avez des questions.
+              </p>
             </motion.div>
           )}
         </AnimatePresence>

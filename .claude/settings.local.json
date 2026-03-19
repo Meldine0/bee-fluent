@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(export PATH=\"/tmp/gh/gh_2.65.0_macOS_arm64/bin:$PATH\")",
+      "Bash(gh repo:*)"
+    ]
+  }
+}

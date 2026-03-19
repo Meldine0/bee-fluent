@@ -22,27 +22,26 @@ export function Home() {
             >
               <div className="inline-flex items-center gap-2 rounded-full border border-[var(--color-bee-yellow)] bg-yellow-50/50 px-4 py-1.5 text-sm font-medium text-yellow-900 mb-8 shadow-sm">
                 <Star className="h-4 w-4 fill-current text-[var(--color-bee-yellow)]" />
-                <span>Places limitées pour ce mois</span>
+                <span>Enfants · Ados · Étudiants · Adultes</span>
               </div>
               <h1 className="font-heading text-6xl font-extrabold tracking-tight text-[var(--color-bee-black)] sm:text-7xl lg:text-[5.5rem] mb-8 leading-[1.05]">
-                Osez parler. <br />
+                L'anglais pour <br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-[var(--color-bee-yellow)] to-yellow-600">
-                  Vraiment.
+                  tout le monde.
                 </span>
               </h1>
               <p className="text-xl text-gray-600 mb-10 max-w-lg leading-relaxed font-medium">
-                L'anglais n'est pas une matière scolaire. C'est une compétence.
-                Débloquez votre oral avec un accompagnement premium, sur-mesure et sans jugement.
+                Peu importe l'âge, le niveau ou l'objectif — scolaire, pro, voyage ou simple confiance à l'oral. Chaque élève a son propre programme, construit rien que pour lui.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Link to="/reservation">
                   <Button size="lg" className="w-full sm:w-auto gap-2 h-14 px-8 text-lg rounded-full shadow-lg shadow-yellow-500/20 hover:shadow-xl hover:shadow-yellow-500/30 hover:-translate-y-0.5 transition-all duration-300">
-                    Votre premier cours <ArrowRight className="h-5 w-5" />
+                    Réserver ma séance <ArrowRight className="h-5 w-5" />
                   </Button>
                 </Link>
-                <Link to="/presentation">
+                <Link to="/test-niveau">
                   <Button variant="ghost" size="lg" className="w-full sm:w-auto h-14 px-8 text-lg rounded-full hover:-translate-y-0.5 transition-all duration-300">
-                    Découvrir la méthode
+                    Tester mon niveau
                   </Button>
                 </Link>
               </div>
@@ -65,9 +64,9 @@ export function Home() {
 
                 <div className="absolute bottom-8 left-8 right-8">
                   <p className="text-white font-heading text-2xl font-semibold leading-snug">
-                    "J'ai enfin arrêté de traduire dans ma tête avant de parler."
+                    "Mon fils a eu 18 à son oral du bac. Il détestait l'anglais avant."
                   </p>
-                  <p className="text-white/80 mt-2 text-sm font-medium">— Sarah, Directrice Marketing</p>
+                  <p className="text-white/80 mt-2 text-sm font-medium">— Caroline, maman de Lucas, 17 ans</p>
                 </div>
               </div>
 
@@ -96,10 +95,10 @@ export function Home() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {[
-              { value: '200+', label: 'Élèves accompagnés', icon: Users },
-              { value: '98%', label: 'Taux de satisfaction', icon: Star },
+              { value: '200+', label: 'Élèves de tous âges accompagnés', icon: Users },
+              { value: '98%', label: 'Satisfaits dès la 1ère séance', icon: Star },
               { value: '4.9/5', label: 'Note moyenne', icon: Award },
-              { value: '+94%', label: 'Confiance à l\'oral', icon: TrendingUp },
+              { value: '+94%', label: 'Gagnent en confiance à l\'oral', icon: TrendingUp },
             ].map((stat, i) => (
               <motion.div
                 key={i}
@@ -148,17 +147,16 @@ export function Home() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
               >
-                <span className="text-sm font-bold uppercase tracking-widest text-gray-400 mb-4 block">Notre approche</span>
+                <span className="text-sm font-bold uppercase tracking-widest text-gray-400 mb-4 block">Comment ça marche</span>
                 <h2 className="font-heading text-4xl font-extrabold text-[var(--color-bee-black)] sm:text-5xl mb-6 leading-tight">
-                  Une méthode qui <br/>
-                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-gray-400 to-gray-300">change la donne.</span>
+                  Adapté à chacun. <br/>
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-gray-400 to-gray-300">Efficace pour tous.</span>
                 </h2>
                 <p className="text-xl text-gray-600 mb-8 leading-relaxed">
-                  Oubliez les listes de vocabulaire interminables et la grammaire théorique.
-                  Nous nous concentrons sur ce qui compte vraiment : votre capacité à communiquer.
+                  Que ce soit pour préparer un bac, décrocher un stage, partir à l'étranger ou juste gagner en confiance — la méthode s'adapte à l'objectif et à l'âge de chaque élève.
                 </p>
                 <Link to="/presentation" className="group inline-flex items-center gap-2 font-bold text-[var(--color-bee-black)] text-lg">
-                  <span className="border-b-2 border-[var(--color-bee-black)] group-hover:border-[var(--color-bee-yellow)] transition-colors pb-1">Lire notre manifeste</span>
+                  <span className="border-b-2 border-[var(--color-bee-black)] group-hover:border-[var(--color-bee-yellow)] transition-colors pb-1">Voir la méthode complète</span>
                   <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
                 </Link>
               </motion.div>
@@ -168,18 +166,18 @@ export function Home() {
               {[
                 {
                   num: "01",
-                  title: "Diagnostic précis",
-                  desc: "On ne traite pas un problème qu'on ne comprend pas. La première séance sert à identifier vos blocages exacts et vos objectifs réels."
+                  title: "On part de là où vous en êtes",
+                  desc: "Enfant qui débute, ado qui prépare un exam, adulte qui veut progresser au travail — on cerne votre niveau et votre objectif dès la première séance."
                 },
                 {
                   num: "02",
-                  title: "Immersion active",
-                  desc: "80% de temps de parole pour vous. Je vous corrige en temps réel, avec bienveillance, pour créer de nouveaux automatismes."
+                  title: "On parle. Beaucoup.",
+                  desc: "80% du temps, c'est l'élève qui parle. On corrige en temps réel, sans mettre mal à l'aise, pour que les bons réflexes s'installent naturellement."
                 },
                 {
                   num: "03",
-                  title: "Suivi millimétré",
-                  desc: "Entre chaque séance, des ressources ciblées (podcasts, articles) pour maintenir le contact avec la langue au quotidien."
+                  title: "On progresse à son rythme",
+                  desc: "Pas de programme rigide imposé. On avance au rythme de l'élève, avec des exercices adaptés à son âge et ses centres d'intérêt."
                 }
               ].map((step, idx) => (
                 <motion.div
@@ -213,30 +211,30 @@ export function Home() {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <span className="text-sm font-bold uppercase tracking-widest text-gray-400 mb-4 block">Témoignages</span>
+            <span className="text-sm font-bold uppercase tracking-widest text-gray-400 mb-4 block">Ils nous font confiance</span>
             <h2 className="font-heading text-4xl font-extrabold text-[var(--color-bee-black)] sm:text-5xl">
-              Ils ont franchi le cap.
+              Ils ont passé le cap.
             </h2>
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {[
               {
-                quote: "En 3 mois, j'ai réussi à animer ma première réunion en anglais sans stress. Un vrai déclic.",
-                name: "Marine L.",
-                role: "Product Manager",
+                quote: "Ma fille avait 8/20 en anglais en seconde. Après 2 mois avec Sarah, elle est montée à 15. Elle prend même plaisir à parler maintenant.",
+                name: "Isabelle M.",
+                role: "Maman de Chloé, 16 ans",
                 stars: 5,
               },
               {
-                quote: "L'approche est radicalement différente de tout ce que j'ai testé avant. On parle dès la première minute.",
+                quote: "J'avais un entretien en anglais 3 semaines après la première séance. Je l'ai eu. Je ne pensais pas que c'était possible aussi vite.",
                 name: "Thomas R.",
-                role: "Entrepreneur",
+                role: "Entrepreneur, 34 ans",
                 stars: 5,
               },
               {
-                quote: "J'ai décroché un poste à l'international grâce à la préparation aux entretiens. Merci Sarah !",
-                name: "Camille D.",
-                role: "Consultante",
+                quote: "Mon fils de 10 ans attendait ses séances avec impatience. Sarah sait exactement comment s'adapter aux enfants. C'est vraiment rare.",
+                name: "Karim B.",
+                role: "Papa de Yanis, 10 ans",
                 stars: 5,
               },
             ].map((testimonial, i) => (
@@ -274,15 +272,14 @@ export function Home() {
             viewport={{ once: true }}
           >
             <h2 className="font-heading text-5xl font-extrabold mb-8 text-white">
-              Prêt à franchir le cap ?
+              Un cours pour chaque élève. Vraiment.
             </h2>
             <p className="text-xl text-gray-400 mb-12 max-w-2xl mx-auto">
-              Les places sont limitées pour garantir la qualité du suivi.
-              Réservez votre créneau et commençons à travailler.
+              Enfant, ado, étudiant ou adulte — il y a un programme fait pour vous. Le nombre de places est limité pour garantir un suivi de qualité.
             </p>
             <Link to="/offres">
               <Button size="lg" className="h-16 px-12 text-xl rounded-full shadow-xl shadow-yellow-500/20 glow-yellow hover:-translate-y-0.5 transition-all duration-300">
-                Voir les disponibilités
+                Choisir mon programme
               </Button>
             </Link>
           </motion.div>

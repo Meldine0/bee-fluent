@@ -6,64 +6,76 @@ import { Link } from 'react-router-dom';
 
 const faqs = [
   {
-    question: "Comment se déroulent les séances de coaching ?",
-    answer: "Les séances se font en visioconférence (Zoom ou Google Meet) partout en France, ou en présentiel dans les Alpes-Maritimes. Elles sont 100% personnalisées et axées sur la pratique orale, avec des corrections en temps réel pour vous faire progresser rapidement."
+    question: "Comment se passe une séance concrètement ?",
+    answer: "On se connecte sur Zoom ou Google Meet (ou on se retrouve en Alpes-Maritimes pour le présentiel). Pas de slides ni de théorie. On parle. Je vous propose des situations réelles — entretien, réunion, voyage, quotidien — et je vous corrige en temps réel, avec bienveillance. Chaque séance est différente parce qu'elle est construite autour de ce dont vous avez besoin ce jour-là."
   },
   {
-    question: "Quelle est la méthode utilisée ?",
-    answer: "Notre méthode est basée sur l'immersion et la pratique active. Fini les listes de vocabulaire interminables et la grammaire rébarbative, nous privilégions des mises en situation réelles pour vous faire parler dès la première séance."
+    question: "C'est quoi la méthode Bee Fluent ?",
+    answer: "Simple : vous parlez, je corrige. 80% du temps c'est vous qui êtes à l'oral. On reproduit des situations concrètes, on travaille vos automatismes, on déconstruit vos blocages. Zéro liste de vocabulaire à apprendre par cœur, zéro grammaire à recopier. On apprend comme on a appris sa langue maternelle : en pratiquant."
   },
   {
-    question: "Combien de temps faut-il pour voir des résultats ?",
-    answer: "Les premiers blocages sautent souvent dès les 3 premières séances. Pour une progression significative et durable, nous recommandons un accompagnement régulier sur 2 à 3 mois."
+    question: "Combien de temps avant de voir des résultats ?",
+    answer: "La plupart des élèves ressentent un déclic dès la 2e ou 3e séance. Pas une révolution, mais une vraie différence : on hésite moins, on cherche moins ses mots, on se lance. Pour une progression solide et durable, comptez 6 à 10 séances régulières."
   },
   {
-    question: "Quel niveau faut-il avoir pour commencer ?",
-    answer: "Nos coachings s'adaptent à tous les niveaux, du grand débutant à l'utilisateur avancé souhaitant perfectionner son accent, sa fluidité ou son vocabulaire professionnel."
+    question: "À partir de quel âge peut-on commencer ?",
+    answer: "On accompagne des enfants dès 7 ans. Les séances pour les plus jeunes sont courtes (30 à 45 min), dynamiques, et basées sur le jeu et l'écoute — pas de grammaire imposée. Pour les ados, on s'adapte à leurs centres d'intérêt pour que les séances ne ressemblent pas à un cours classique."
   },
   {
-    question: "Puis-je annuler ou reporter une séance ?",
-    answer: "Oui, vous pouvez reporter une séance gratuitement jusqu'à 24h à l'avance en nous contactant par email."
+    question: "Je suis débutant, est-ce que c'est fait pour moi ?",
+    answer: "Oui, complètement. Que vous ayez 10 ans ou 50 ans, que vous partiez de zéro ou que vous ayez des bases à consolider — on part de là où vous en êtes. Aucun niveau minimum requis."
   },
   {
-    question: "Est-ce que la formation est éligible au CPF ?",
-    answer: "Pour le moment, nos coachings ne sont pas éligibles au CPF. Ce choix nous permet de garder une flexibilité totale sur notre méthode et nos tarifs, sans les contraintes administratives imposées par l'État."
+    question: "Puis-je annuler ou décaler une séance ?",
+    answer: "Oui, sans problème jusqu'à 24h avant la séance. Au-delà, la séance est considérée comme effectuée. On est flexibles, on vous demande juste de prévenir à temps."
   },
   {
-    question: "Préparez-vous aux examens comme le TOEIC ou le TOEFL ?",
-    answer: "Absolument. Nous pouvons axer les séances sur la préparation spécifique de ces examens, en travaillant la méthodologie, la gestion du temps et les compétences requises."
+    question: "Est-ce éligible au CPF ?",
+    answer: "Pas pour l'instant. Ce choix nous permet de rester libres sur notre méthode et nos tarifs, sans alourdir notre fonctionnement avec des dossiers administratifs. En contrepartie, nos prix restent accessibles et sans engagement."
   },
   {
-    question: "Faites-vous de la préparation aux entretiens d'embauche ?",
-    answer: "Oui, c'est l'une de nos spécialités. Nous faisons des simulations d'entretiens, travaillons votre pitch de présentation et anticipons les questions pièges en anglais pour vous donner confiance le jour J."
+    question: "Vous préparez au TOEIC, TOEFL, IELTS ?",
+    answer: "Oui. On peut dédier des séances entières à la préparation de ces examens : méthodologie, gestion du temps, exercices types, écoute. Précisez-le lors de votre réservation et on construit votre programme autour de ça."
   },
   {
-    question: "Dois-je faire des devoirs entre les séances ?",
-    answer: "Rien n'est obligatoire, mais nous le recommandons fortement pour maximiser vos résultats. Nous vous fournissons des ressources ciblées (podcasts, articles, vidéos courtes) pour maintenir une immersion quotidienne de 10 à 15 minutes."
+    question: "Vous préparez aussi aux entretiens d'embauche en anglais ?",
+    answer: "C'est même l'une des choses qu'on fait le mieux. Simulation complète d'entretien, travail du pitch, anticipation des questions difficiles, correction de l'accent. Les élèves qui passent par cette prépa arrivent beaucoup plus sereins le jour J."
   },
   {
-    question: "Enseignez-vous l'anglais britannique ou américain ?",
-    answer: "Nos coachs maîtrisent les deux accents et vocabulaires. Nous nous adaptons à vos objectifs : si vous travaillez principalement avec des Américains, nous privilégierons l'anglais US."
+    question: "Est-ce que les séances aident pour les examens scolaires ?",
+    answer: "Oui. On peut préparer le brevet, le bac (oral et écrit), un oral de lycée ou un contrôle important. Pour les plus jeunes, on travaille aussi sur le programme de l'école pour renforcer ce qui est vu en classe. Les parents constatent généralement une amélioration des notes en 4 à 6 semaines."
+  },
+  {
+    question: "Est-ce qu'il y a du travail entre les séances ?",
+    answer: "Ce n'est pas obligatoire — surtout pour les plus jeunes. On propose des petites ressources adaptées à l'âge : une chanson, une vidéo courte, un jeu en ligne. Pour les ados et adultes, des podcasts ou articles courts pour garder l'anglais dans le quotidien, sans que ça devienne une corvée."
+  },
+  {
+    question: "Mon enfant est timide et n'ose pas parler anglais. Est-ce que ça peut quand même marcher ?",
+    answer: "C'est exactement le profil qu'on aide le mieux. Les enfants timides ont souvent peur du jugement — et c'est justement ce qu'on élimine dès la première séance. Sarah a une façon de mettre les enfants à l'aise très rapidement. En général, après 2 ou 3 séances, même les plus réservés commencent à se lancer."
+  },
+  {
+    question: "Anglais britannique ou américain ?",
+    answer: "Les deux. On s'adapte à votre contexte. Si vous travaillez avec des Américains, on part sur l'anglais US. Si vous visez un poste en Angleterre, on travaille l'accent britannique. Vous choisissez, on s'aligne."
   },
   {
     question: "Puis-je enregistrer les séances ?",
-    answer: "Oui, avec l'accord de votre coach, vous pouvez enregistrer les séances sur Zoom ou Google Meet. C'est un excellent moyen de vous réécouter, de noter vos erreurs et de travailler votre prononciation."
+    answer: "Oui. C'est même recommandé. Se réécouter quelques semaines plus tard, c'est l'un des meilleurs moyens de mesurer sa progression — et d'entendre concrètement là où on s'est amélioré."
   },
   {
-    question: "Comment se passe le paiement ?",
-    answer: "Le paiement s'effectue en ligne de manière totalement sécurisée par carte bancaire (via Stripe). Pour les packs de plusieurs séances, un paiement en plusieurs fois sans frais est possible."
+    question: "Comment je paye ?",
+    answer: "En ligne, par carte bancaire, de façon sécurisée. Pour les packs 5 ou 10 séances, on peut s'arranger pour un paiement en deux fois. Contactez-nous si vous avez besoin d'un aménagement."
   },
   {
-    question: "Puis-je changer de coach si le feeling ne passe pas ?",
-    answer: "Bien sûr. L'alliance pédagogique (le 'feeling') est cruciale pour progresser et oser parler. Si besoin, nous vous proposerons un autre coach de notre équipe sans aucun frais supplémentaire."
+    question: "Et si le feeling ne passe pas avec le coach ?",
+    answer: "Ça arrive, et c'est humain. La relation pédagogique c'est crucial pour avoir envie de parler. Si ça ne se passe pas bien, on vous propose un autre coach sans frais et sans question."
   },
   {
-    question: "Fournissez-vous du matériel pédagogique ?",
-    answer: "Oui, tous les supports de cours, fiches de vocabulaire personnalisées et exercices vous sont partagés via un espace Notion dédié auquel vous avez accès à vie."
+    question: "Est-ce que vous fournissez des supports de cours ?",
+    answer: "Oui. Après chaque séance, vous recevez un récap des points travaillés, les corrections importantes et les ressources pour aller plus loin. Tout est accessible via un espace Notion personnel, à vie."
   },
   {
-    question: "Est-ce que je peux prendre des cours le week-end ?",
-    answer: "Nos coachs ont des plannings très flexibles. Certains proposent des créneaux le samedi matin ou en fin de journée, selon leurs disponibilités et votre fuseau horaire."
+    question: "Vous proposez des créneaux le soir et le week-end ?",
+    answer: "Oui. On a des créneaux tôt le matin, tard le soir et le samedi pour s'adapter aux actifs. Les disponibilités varient selon les semaines — regardez le calendrier en ligne pour voir ce qui vous convient."
   }
 ];
 
@@ -85,7 +97,7 @@ export function FAQ() {
             animate={{ opacity: 1, y: 0 }}
             className="font-heading text-4xl md:text-5xl font-extrabold text-[var(--color-bee-black)] mb-6"
           >
-            Foire Aux Questions
+            Vos questions, nos réponses
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -93,7 +105,7 @@ export function FAQ() {
             transition={{ delay: 0.1 }}
             className="text-xl text-gray-600"
           >
-            Tout ce que vous devez savoir sur nos cours et notre méthode.
+            On répond franchement aux questions qu'on nous pose le plus souvent.
           </motion.p>
         </div>
 
@@ -190,9 +202,9 @@ export function FAQ() {
         >
           <MessageCircle className="h-10 w-10 text-[var(--color-bee-yellow)] mx-auto mb-4" />
           <h3 className="font-heading text-2xl font-bold text-[var(--color-bee-black)] mb-3">
-            Vous n'avez pas trouvé votre réponse ?
+            Votre question n'est pas là ?
           </h3>
-          <p className="text-gray-600 mb-6">Contactez-nous directement, on vous répond sous 24h.</p>
+          <p className="text-gray-600 mb-6">Écrivez-nous, on répond sous 24h — souvent bien moins.</p>
           <Link to="mailto:hello@beefluent.fr">
             <Button variant="outline" className="rounded-full px-8">
               Nous écrire

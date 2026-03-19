@@ -5,6 +5,14 @@ import { Button } from './ui/Button';
 import { Logo } from './Logo';
 import { motion, AnimatePresence } from 'motion/react';
 
+function ScrollToTop() {
+  const { pathname } = useLocation();
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+  return null;
+}
+
 export function Layout() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -26,6 +34,7 @@ export function Layout() {
 
   return (
     <div className="min-h-screen flex flex-col bg-[#FDFCF8]">
+      <ScrollToTop />
       {/* Floating Pill Navigation */}
       <header className="fixed top-6 inset-x-0 z-50 flex justify-center px-4 pointer-events-none">
         <div className={`pointer-events-auto flex items-center justify-between bg-white/90 backdrop-blur-md px-4 py-3 rounded-full border transition-all duration-300 w-full max-w-5xl ${

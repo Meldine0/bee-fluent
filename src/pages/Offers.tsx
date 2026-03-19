@@ -6,13 +6,13 @@ import { Check, Video, MapPin } from 'lucide-react';
 
 const tiers = [
   {
-    name: 'Séance Individuelle',
+    name: 'Séance Découverte',
     id: 'tier-single',
     href: '/reservation?pack=single',
     price: '45',
     unit: '/ séance',
-    description: 'Bilan de niveau, préparation d\'entretien ou besoin ponctuel.',
-    features: ['1 heure de cours', 'Bilan de niveau', 'Correction en direct', 'Support de cours PDF'],
+    description: 'Idéal pour tester, pour un besoin ponctuel ou pour un enfant qui commence.',
+    features: ['1 heure de coaching oral', 'Diagnostic de niveau', 'Correction en temps réel', 'Compte-rendu de séance'],
     mostPopular: false,
   },
   {
@@ -21,29 +21,29 @@ const tiers = [
     href: '/reservation?pack=5',
     price: '200',
     unit: '/ 5 séances',
-    description: 'Le format parfait pour une progression régulière sur un mois.',
+    description: 'Ados, étudiants, adultes : la progression visible en moins d\'un mois.',
     features: [
-      '5 heures de cours',
-      'Programme personnalisé',
-      'Exercices inter-séances',
-      'Suivi de progression',
-      'Support prioritaire',
+      '5 heures de coaching',
+      'Programme personnalisé selon l\'âge & l\'objectif',
+      'Exercices ciblés entre chaque séance',
+      'Suivi de progression détaillé',
+      'Accès prioritaire aux créneaux',
     ],
     mostPopular: true,
   },
   {
-    name: 'Immersion',
+    name: 'Immersion Totale',
     id: 'tier-full',
     href: '/reservation?pack=full',
     price: '380',
     unit: '/ 10 séances',
-    description: 'Une immersion totale pour franchir un cap décisif.',
+    description: 'Pour changer vraiment de niveau — à tout âge, avec ou sans bases.',
     features: [
-      '10 heures de cours',
-      'Bilan initial complet',
-      'Simulations d\'examens/entretiens',
-      'Ressources exclusives',
-      'Disponibilité WhatsApp 7j/7',
+      '10 heures de coaching',
+      'Bilan initial approfondi',
+      'Prépa exam, entretien ou voyage',
+      'Ressources audio & écrit dédiées',
+      'Disponible sur WhatsApp entre les séances',
     ],
     mostPopular: false,
   },
@@ -62,8 +62,8 @@ export function Offers() {
               Investissement
             </h2>
             <p className="mt-2 font-heading text-5xl font-extrabold tracking-tight text-[var(--color-bee-black)] sm:text-6xl leading-tight">
-              Des tarifs simples. <br/>
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-gray-400 to-gray-300">Sans engagement.</span>
+              Un programme pour chaque âge. <br/>
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-gray-400 to-gray-300">Un tarif pour chaque budget.</span>
             </p>
           </motion.div>
         </div>
@@ -144,10 +144,10 @@ export function Offers() {
               viewport={{ once: true }}
             >
               <h2 className="font-heading text-3xl font-bold text-[var(--color-bee-black)]">
-                Deux formats, la même exigence
+                Où que vous soyez, on s'adapte
               </h2>
               <p className="mt-4 text-lg text-gray-600">
-                Choisissez le format qui s'adapte le mieux à votre quotidien.
+                En visio depuis votre canapé ou en face à face dans les Alpes-Maritimes — la qualité du coaching est la même.
               </p>
             </motion.div>
           </div>
@@ -173,7 +173,7 @@ export function Offers() {
               <div className="p-8">
                 <h3 className="font-heading text-2xl font-bold mb-3">Visioconférence</h3>
                 <p className="text-gray-600 leading-relaxed">
-                  Idéal pour les emplois du temps chargés, partout en France. Connectez-vous d'où vous voulez via Zoom ou Google Meet. Les sessions sont tout aussi interactives qu'en présentiel grâce à nos outils collaboratifs.
+                  Disponible partout en France. Depuis votre bureau, votre salon ou en déplacement. On se connecte sur Zoom ou Google Meet — c'est aussi efficace qu'en présentiel, et beaucoup plus flexible.
                 </p>
               </div>
             </motion.div>
@@ -199,7 +199,7 @@ export function Offers() {
               <div className="p-8">
                 <h3 className="font-heading text-2xl font-bold mb-3">Présentiel</h3>
                 <p className="text-gray-600 leading-relaxed">
-                  Pour une immersion totale et un contact humain privilégié. Retrouvez votre coach dans les Alpes-Maritimes pour une session d'échange naturel en face à face.
+                  Réservé aux Alpes-Maritimes. Si vous préférez le contact humain et la dynamique d'une vraie conversation face à face, c'est l'option faite pour vous.
                 </p>
               </div>
             </motion.div>
