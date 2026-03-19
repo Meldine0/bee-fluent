@@ -1,18 +1,42 @@
 import { useState, useEffect, useMemo, type FormEvent } from 'react';
-import { motion } from 'motion/react';
+import { motion, AnimatePresence } from 'motion/react';
 import { format, addDays, startOfToday } from 'date-fns';
 import { fr } from 'date-fns/locale';
-import { ChevronLeft, ChevronRight, Video, MapPin, Clock, CheckCircle2, Sparkles, Loader2, X } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Video, MapPin, Clock, CheckCircle2, Sparkles, Loader2, X, Check } from 'lucide-react';
 import { Button } from '../components/ui/Button';
 import { saveBooking, getBookedSlots } from '../lib/supabase';
 import { useSearchParams } from 'react-router-dom';
 
 const DEFAULT_TIMES = ['09:00', '10:30', '14:00', '15:30', '17:00'];
 
-const PACKS: Record<string, { name: string; sessions: number; price: string }> = {
-  single: { name: 'Séance Individuelle', sessions: 1, price: '45€' },
-  '5': { name: 'Pack Intensif', sessions: 5, price: '200€' },
-  full: { name: 'Immersion', sessions: 10, price: '380€' },
+const PACKS: Record<string, { name: string; sessions: number; price: string; unit: string; description: string; features: string[]; popular: boolean }> = {
+  single: {
+    name: 'Séance Découverte',
+    sessions: 1,
+    price: '45€',
+    unit: '/ séance',
+    description: 'Pour tester, ou pour un besoin ponctuel.',
+    features: ['1 heure de coaching oral', 'Diagnostic de niveau', 'Correction en direct', 'Compte-rendu de séance'],
+    popular: false,
+  },
+  '5': {
+    name: 'Pack Intensif',
+    sessions: 5,
+    price: '200€',
+    unit: '/ 5 séances',
+    description: 'Des résultats visibles en moins d\'un mois.',
+    features: ['5 heures de coaching', 'Programme personnalisé', 'Exercices entre séances', 'Suivi de progression'],
+    popular: true,
+  },
+  full: {
+    name: 'Immersion Totale',
+    sessions: 10,
+    price: '380€',
+    unit: '/ 10 séances',
+    description: 'Pour changer vraiment de niveau.',
+    features: ['10 heures de coaching', 'Bilan initial complet', 'Prépa exam / entretien', 'WhatsApp entre les séances'],
+    popular: false,
+  },
 };
 
 interface DaySlot {
@@ -27,10 +51,13 @@ interface SelectedSlot {
 
 export function Booking() {
   const [searchParams] = useSearchParams();
-  const packKey = searchParams.get('pack') || 'single';
+  const initialPackKey = searchParams.get('pack');
+
+  const [packKey, setPackKey] = useState<string>(initialPackKey || 'single');
   const pack = PACKS[packKey] || PACKS.single;
 
-  const [step, setStep] = useState<1 | 2 | 3>(1);
+  // Step 0 = choix du forfait, 1 = calendrier, 2 = confirmation, 3 = succès
+  const [step, setStep] = useState<0 | 1 | 2 | 3>(initialPackKey ? 1 : 0);
   const [selectedSlots, setSelectedSlots] = useState<SelectedSlot[]>([]);
   const [sessionType, setSessionType] = useState<'visio' | 'presentiel'>('visio');
   const [formFields, setFormFields] = useState({ firstName: '', lastName: '', email: '' });
@@ -166,14 +193,101 @@ export function Booking() {
   });
 
   return (
-    <div className="bg-[#FDFCF8] min-h-screen py-12 pt-32">
+    <div className="bg-[#FDFCF8] min-h-screen py-6 pt-24 sm:pt-32">
       <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
 
-        {/* Pack info */}
-        <div className="text-center mb-6">
+        {/* Step 0 — Choix du forfait */}
+        <AnimatePresence mode="wait">
+        {step === 0 && (
+          <motion.div
+            key="step0"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+          >
+            <div className="text-center mb-8 sm:mb-10">
+              <h1 className="font-heading text-2xl sm:text-4xl md:text-5xl font-extrabold text-[var(--color-bee-black)] mb-3 sm:mb-4">
+                Choisissez votre programme
+              </h1>
+              <p className="text-lg text-gray-500">Sélectionnez le forfait qui vous correspond avant de choisir vos créneaux.</p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 mb-8 sm:mb-10">
+              {(Object.entries(PACKS) as [string, typeof PACKS[string]][]).map(([key, p]) => {
+                const isSelected = packKey === key;
+                return (
+                  <button
+                    key={key}
+                    onClick={() => setPackKey(key)}
+                    className={`relative text-left rounded-3xl p-5 sm:p-8 border-2 transition-all duration-200 ${
+                      isSelected
+                        ? 'border-[var(--color-bee-yellow)] bg-[var(--color-bee-black)] text-white shadow-xl'
+                        : 'border-gray-200 bg-white hover:border-yellow-300 hover:shadow-md'
+                    }`}
+                  >
+                    {p.popular && (
+                      <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-[var(--color-bee-yellow)] text-[var(--color-bee-black)] text-xs font-bold px-4 py-1 rounded-full">
+                        Le plus choisi
+                      </span>
+                    )}
+                    <div className="mb-4">
+                      <h3 className={`font-heading text-xl font-bold mb-1 ${isSelected ? 'text-white' : 'text-[var(--color-bee-black)]'}`}>
+                        {p.name}
+                      </h3>
+                      <p className={`text-sm ${isSelected ? 'text-gray-400' : 'text-gray-500'}`}>{p.description}</p>
+                    </div>
+                    <div className="mb-6">
+                      <span className={`text-4xl font-extrabold font-heading ${isSelected ? 'text-[var(--color-bee-yellow)]' : 'text-[var(--color-bee-black)]'}`}>
+                        {p.price}
+                      </span>
+                      <span className={`text-sm ml-1 ${isSelected ? 'text-gray-400' : 'text-gray-400'}`}>{p.unit}</span>
+                    </div>
+                    <ul className="space-y-2">
+                      {p.features.map((f) => (
+                        <li key={f} className="flex items-center gap-2 text-sm">
+                          <Check className={`h-4 w-4 flex-shrink-0 ${isSelected ? 'text-[var(--color-bee-yellow)]' : 'text-green-500'}`} />
+                          <span className={isSelected ? 'text-gray-300' : 'text-gray-600'}>{f}</span>
+                        </li>
+                      ))}
+                    </ul>
+                    {isSelected && (
+                      <div className="mt-6 flex items-center gap-2 text-[var(--color-bee-yellow)] text-sm font-bold">
+                        <CheckCircle2 className="h-4 w-4" /> Forfait sélectionné
+                      </div>
+                    )}
+                  </button>
+                );
+              })}
+            </div>
+
+            <div className="text-center">
+              <Button
+                size="lg"
+                onClick={() => { setSelectedSlots([]); setStep(1); }}
+                className="h-14 px-12 text-lg rounded-full shadow-lg shadow-yellow-500/15"
+              >
+                Choisir mes créneaux →
+              </Button>
+            </div>
+          </motion.div>
+        )}
+        </AnimatePresence>
+
+        {step > 0 && (
+        <>
+        {/* Pack info + bouton modifier */}
+        <div className="flex items-center justify-center gap-3 mb-6">
           <span className="inline-flex items-center gap-2 bg-[var(--color-bee-yellow)] text-[var(--color-bee-black)] px-5 py-2 rounded-full text-sm font-bold shadow-sm">
             {pack.name} — {pack.sessions} {pack.sessions > 1 ? 'séances' : 'séance'} — {pack.price}
           </span>
+          {step < 3 && (
+            <button
+              onClick={() => { setStep(0); setSelectedSlots([]); }}
+              className="text-sm text-gray-400 hover:text-gray-700 underline transition-colors"
+            >
+              Changer
+            </button>
+          )}
         </div>
 
         {/* Progress indicator */}
@@ -277,7 +391,7 @@ export function Booking() {
           </div>
 
           {/* Right Column - Booking Flow */}
-          <div className="md:w-2/3 p-8">
+          <div className="md:w-2/3 p-4 sm:p-8">
             {step === 1 && (
               <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
                 <div className="flex items-center justify-between mb-2">
@@ -327,7 +441,7 @@ export function Booking() {
                     <span className="ml-3 text-gray-500">Chargement des disponibilités...</span>
                   </div>
                 ) : (
-                  <div className="grid grid-cols-4 sm:grid-cols-7 gap-2">
+                  <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-7 gap-1 sm:gap-2">
                     {slots.map((day, i) => (
                       <div key={i} className="flex flex-col items-center">
                         <div className="text-xs font-medium text-gray-500 uppercase mb-1">
@@ -496,6 +610,8 @@ export function Booking() {
             )}
           </div>
         </div>
+        </>
+        )}
       </div>
     </div>
   );

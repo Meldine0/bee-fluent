@@ -102,7 +102,7 @@ export function LevelTest() {
   const result = getResult();
 
   return (
-    <div className="min-h-screen bg-[#FDFCF8] pt-32 pb-24 px-4 sm:px-6 lg:px-8 flex items-center justify-center relative">
+    <div className="min-h-screen bg-[#FDFCF8] pt-24 sm:pt-32 pb-16 sm:pb-24 px-4 sm:px-6 lg:px-8 flex items-start sm:items-center justify-center relative">
       {/* Background decoration */}
       <div className="absolute top-20 right-10 w-72 h-72 bg-yellow-100/30 rounded-full blur-3xl" />
       <div className="absolute bottom-20 left-10 w-64 h-64 bg-yellow-50/40 rounded-full blur-3xl" />
@@ -117,12 +117,12 @@ export function LevelTest() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
-              className="bg-white rounded-[2rem] p-8 md:p-12 shadow-xl border border-gray-100 text-center"
+              className="bg-white rounded-[2rem] p-6 sm:p-8 md:p-12 shadow-xl border border-gray-100 text-center"
             >
               <div className="inline-flex items-center justify-center w-20 h-20 rounded-3xl bg-gradient-to-br from-yellow-50 to-yellow-100 mb-8">
                 <BookOpen className="h-10 w-10 text-yellow-700" />
               </div>
-              <h1 className="font-heading text-4xl md:text-5xl font-extrabold text-[var(--color-bee-black)] mb-6">
+              <h1 className="font-heading text-2xl sm:text-4xl md:text-5xl font-extrabold text-[var(--color-bee-black)] mb-4 sm:mb-6">
                 Testez votre niveau d'anglais
               </h1>
               <p className="text-xl text-gray-600 mb-4 max-w-xl mx-auto">
@@ -149,7 +149,7 @@ export function LevelTest() {
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -20 }}
-              className="bg-white rounded-[2rem] p-8 md:p-12 shadow-xl border border-gray-100"
+              className="bg-white rounded-[2rem] p-5 sm:p-8 md:p-12 shadow-xl border border-gray-100"
             >
               {/* Progress Bar */}
               <div className="mb-8">
@@ -168,7 +168,7 @@ export function LevelTest() {
               </div>
 
               {/* Question */}
-              <h2 className="text-2xl md:text-3xl font-bold text-[var(--color-bee-black)] mb-8 leading-tight">
+              <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-[var(--color-bee-black)] mb-5 sm:mb-8 leading-tight">
                 {questions[currentIndex].text}
               </h2>
 
@@ -178,13 +178,13 @@ export function LevelTest() {
                   <button
                     key={idx}
                     onClick={() => handleAnswer(idx)}
-                    className="flex items-center justify-between p-5 rounded-xl border-2 border-gray-100 hover:border-[var(--color-bee-yellow)] hover:bg-yellow-50/50 transition-all duration-200 text-left group"
+                    className="flex items-center justify-between p-3 sm:p-5 rounded-xl border-2 border-gray-100 hover:border-[var(--color-bee-yellow)] hover:bg-yellow-50/50 transition-all duration-200 text-left group"
                   >
                     <span className="flex items-center gap-4">
                       <span className="w-8 h-8 rounded-lg bg-gray-100 group-hover:bg-[var(--color-bee-yellow)] text-gray-500 group-hover:text-[var(--color-bee-black)] flex items-center justify-center text-sm font-bold transition-colors duration-200">
                         {String.fromCharCode(65 + idx)}
                       </span>
-                      <span className="text-lg font-medium text-gray-700 group-hover:text-[var(--color-bee-black)]">
+                      <span className="text-sm sm:text-lg font-medium text-gray-700 group-hover:text-[var(--color-bee-black)]">
                         {option}
                       </span>
                     </span>
@@ -282,7 +282,7 @@ export function LevelTest() {
               key="result"
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
-              className="bg-white rounded-[2rem] p-8 md:p-12 shadow-xl border border-gray-100"
+              className="bg-white rounded-[2rem] p-5 sm:p-8 md:p-12 shadow-xl border border-gray-100"
             >
               {/* Score + Level */}
               <div className="flex flex-col sm:flex-row items-center gap-8 mb-10 pb-10 border-b border-gray-100">

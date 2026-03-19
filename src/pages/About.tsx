@@ -5,8 +5,8 @@ export function About() {
   return (
     <div className="bg-[#FDFCF8]">
       {/* Hero */}
-      <div className="py-24 sm:py-32">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+      <div className="py-12 sm:py-24 lg:py-32">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-2xl lg:mx-0 lg:max-w-none">
             <div className="grid grid-cols-1 gap-y-16 lg:grid-cols-2 lg:gap-x-24 lg:gap-y-0">
 
@@ -20,11 +20,11 @@ export function About() {
                   <h2 className="text-sm font-bold uppercase tracking-widest text-gray-400 mb-4">
                     Pourquoi Bee Fluent
                   </h2>
-                  <p className="mt-2 font-heading text-4xl font-extrabold tracking-tight text-[var(--color-bee-black)] sm:text-5xl leading-tight">
+                  <p className="mt-2 font-heading text-2xl font-extrabold tracking-tight text-[var(--color-bee-black)] sm:text-4xl lg:text-5xl leading-tight">
                     L'anglais pour tous — du CP au monde professionnel.
                   </p>
 
-                  <div className="mt-10 space-y-6 text-lg leading-relaxed text-gray-600">
+                  <div className="mt-6 sm:mt-10 space-y-4 sm:space-y-6 text-base sm:text-lg leading-relaxed text-gray-600">
                     <p>
                       J'accompagne des enfants dès 7 ans, des ados qui préparent leur brevet ou leur bac, des étudiants en école de commerce, et des adultes qui veulent progresser dans leur carrière ou partir à l'étranger. Ce qui les relie ? Ils veulent tous parler — vraiment parler — et pas juste cocher des cases.
                     </p>
@@ -88,8 +88,8 @@ export function About() {
       </div>
 
       {/* Values Section */}
-      <div className="py-24 bg-white">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+      <div className="py-12 sm:py-24 bg-white">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -97,7 +97,7 @@ export function About() {
             className="text-center mb-16"
           >
             <span className="text-sm font-bold uppercase tracking-widest text-gray-400 mb-4 block">La différence Bee Fluent</span>
-            <h2 className="font-heading text-4xl font-extrabold text-[var(--color-bee-black)]">
+            <h2 className="font-heading text-2xl sm:text-4xl font-extrabold text-[var(--color-bee-black)]">
               Pas un cours standard. Un coaching sur-mesure.
             </h2>
           </motion.div>

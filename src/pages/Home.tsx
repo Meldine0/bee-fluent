@@ -24,13 +24,13 @@ export function Home() {
                 <Star className="h-4 w-4 fill-current text-[var(--color-bee-yellow)]" />
                 <span>Enfants · Ados · Étudiants · Adultes</span>
               </div>
-              <h1 className="font-heading text-6xl font-extrabold tracking-tight text-[var(--color-bee-black)] sm:text-7xl lg:text-[5.5rem] mb-8 leading-[1.05]">
+              <h1 className="font-heading text-4xl font-extrabold tracking-tight text-[var(--color-bee-black)] sm:text-6xl lg:text-[5.5rem] mb-6 leading-[1.05]">
                 L'anglais pour <br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-[var(--color-bee-yellow)] to-yellow-600">
                   tout le monde.
                 </span>
               </h1>
-              <p className="text-xl text-gray-600 mb-10 max-w-lg leading-relaxed font-medium">
+              <p className="text-base sm:text-xl text-gray-600 mb-8 max-w-lg leading-relaxed font-medium">
                 Peu importe l'âge, le niveau ou l'objectif — scolaire, pro, voyage ou simple confiance à l'oral. Chaque élève a son propre programme, construit rien que pour lui.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
@@ -111,7 +111,7 @@ export function Home() {
                 <div className="inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-yellow-50 mb-4 group-hover:bg-[var(--color-bee-yellow)] transition-colors duration-300">
                   <stat.icon className="h-5 w-5 text-yellow-700 group-hover:text-[var(--color-bee-black)] transition-colors duration-300" />
                 </div>
-                <p className="font-heading text-3xl md:text-4xl font-extrabold text-[var(--color-bee-black)]">{stat.value}</p>
+                <p className="font-heading text-2xl md:text-3xl lg:text-4xl font-extrabold text-[var(--color-bee-black)]">{stat.value}</p>
                 <p className="text-sm text-gray-500 mt-1 font-medium">{stat.label}</p>
               </motion.div>
             ))}
@@ -126,7 +126,7 @@ export function Home() {
             <div key={i} className="flex items-center gap-8 mx-4">
               {['Pratique orale', 'Confiance', 'Régularité', 'Immersion', 'Sur-mesure'].map((text, j) => (
                 <span key={j} className="flex items-center gap-8">
-                  <span className="font-heading font-bold text-2xl text-[var(--color-bee-black)] uppercase tracking-wider">
+                  <span className="font-heading font-bold text-base sm:text-2xl text-[var(--color-bee-black)] uppercase tracking-wider">
                     {text}
                   </span>
                   <span className="text-[var(--color-bee-black)]/40 text-xl">&#9670;</span>
@@ -138,9 +138,9 @@ export function Home() {
       </div>
 
       {/* Editorial Method Section */}
-      <section className="py-32 bg-[#FDFCF8] relative grain">
+      <section className="py-16 sm:py-32 bg-[#FDFCF8] relative grain">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-16">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16">
             <div className="lg:col-span-5">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -148,11 +148,11 @@ export function Home() {
                 viewport={{ once: true }}
               >
                 <span className="text-sm font-bold uppercase tracking-widest text-gray-400 mb-4 block">Comment ça marche</span>
-                <h2 className="font-heading text-4xl font-extrabold text-[var(--color-bee-black)] sm:text-5xl mb-6 leading-tight">
+                <h2 className="font-heading text-2xl sm:text-4xl font-extrabold text-[var(--color-bee-black)] sm:text-5xl mb-4 sm:mb-6 leading-tight">
                   Adapté à chacun. <br/>
                   <span className="text-transparent bg-clip-text bg-gradient-to-r from-gray-400 to-gray-300">Efficace pour tous.</span>
                 </h2>
-                <p className="text-xl text-gray-600 mb-8 leading-relaxed">
+                <p className="text-base sm:text-xl text-gray-600 mb-6 sm:mb-8 leading-relaxed">
                   Que ce soit pour préparer un bac, décrocher un stage, partir à l'étranger ou juste gagner en confiance — la méthode s'adapte à l'objectif et à l'âge de chaque élève.
                 </p>
                 <Link to="/presentation" className="group inline-flex items-center gap-2 font-bold text-[var(--color-bee-black)] text-lg">
@@ -203,7 +203,7 @@ export function Home() {
       </section>
 
       {/* Testimonials */}
-      <section className="py-24 bg-white">
+      <section className="py-12 sm:py-24 bg-white">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -212,7 +212,7 @@ export function Home() {
             className="text-center mb-16"
           >
             <span className="text-sm font-bold uppercase tracking-widest text-gray-400 mb-4 block">Ils nous font confiance</span>
-            <h2 className="font-heading text-4xl font-extrabold text-[var(--color-bee-black)] sm:text-5xl">
+            <h2 className="font-heading text-2xl sm:text-4xl font-extrabold text-[var(--color-bee-black)] sm:text-5xl">
               Ils ont passé le cap.
             </h2>
           </motion.div>
@@ -244,7 +244,7 @@ export function Home() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.15 }}
-                className="bg-[#FDFCF8] rounded-2xl p-8 border border-gray-100 hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
+                className="bg-[#FDFCF8] rounded-2xl p-5 sm:p-8 border border-gray-100 hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
               >
                 <div className="flex gap-1 mb-4">
                   {[...Array(testimonial.stars)].map((_, j) => (
@@ -263,7 +263,7 @@ export function Home() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-32 bg-[var(--color-bee-black)] relative overflow-hidden">
+      <section className="py-16 sm:py-32 bg-[var(--color-bee-black)] relative overflow-hidden">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-yellow-500/10 rounded-full blur-3xl" />
         <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 text-center relative z-10">
           <motion.div
@@ -271,14 +271,14 @@ export function Home() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <h2 className="font-heading text-5xl font-extrabold mb-8 text-white">
+            <h2 className="font-heading text-3xl sm:text-5xl font-extrabold mb-6 sm:mb-8 text-white">
               Un cours pour chaque élève. Vraiment.
             </h2>
-            <p className="text-xl text-gray-400 mb-12 max-w-2xl mx-auto">
+            <p className="text-base sm:text-xl text-gray-400 mb-8 sm:mb-12 max-w-2xl mx-auto">
               Enfant, ado, étudiant ou adulte — il y a un programme fait pour vous. Le nombre de places est limité pour garantir un suivi de qualité.
             </p>
             <Link to="/offres">
-              <Button size="lg" className="h-16 px-12 text-xl rounded-full shadow-xl shadow-yellow-500/20 glow-yellow hover:-translate-y-0.5 transition-all duration-300">
+              <Button size="lg" className="h-14 px-8 sm:px-12 text-lg sm:text-xl rounded-full shadow-xl shadow-yellow-500/20 glow-yellow hover:-translate-y-0.5 transition-all duration-300">
                 Choisir mon programme
               </Button>
             </Link>

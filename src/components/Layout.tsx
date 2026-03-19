@@ -118,13 +118,13 @@ export function Layout() {
         <Outlet />
       </main>
 
-      <footer className="bg-[var(--color-bee-black)] text-white py-16 mt-24">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+      <footer className="bg-[var(--color-bee-black)] text-white py-10 sm:py-16 mt-12 sm:mt-24">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-8 editorial-divider pb-12 border-white/10">
             <div>
               <div className="flex items-center gap-2 mb-4">
                 <Logo className="h-10 w-10 text-white" />
-                <span className="font-heading text-3xl font-bold">Bee Fluent.</span>
+                <span className="font-heading text-2xl sm:text-3xl font-bold">Bee Fluent.</span>
               </div>
               <p className="text-gray-400 max-w-xs">L'anglais sur-mesure pour ceux qui veulent de vrais résultats.</p>
             </div>

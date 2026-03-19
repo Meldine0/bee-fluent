@@ -89,13 +89,13 @@ export function FAQ() {
   );
 
   return (
-    <div className="bg-[#FDFCF8] min-h-screen pt-20 pb-24">
-      <div className="mx-auto max-w-3xl px-6 lg:px-8">
+    <div className="bg-[#FDFCF8] min-h-screen pt-12 pb-16 sm:pt-20 sm:pb-24">
+      <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="font-heading text-4xl md:text-5xl font-extrabold text-[var(--color-bee-black)] mb-6"
+            className="font-heading text-2xl sm:text-4xl md:text-5xl font-extrabold text-[var(--color-bee-black)] mb-4 sm:mb-6"
           >
             Vos questions, nos réponses
           </motion.h1>
@@ -154,7 +154,7 @@ export function FAQ() {
               >
                 <button
                   onClick={() => setOpenIndex(openIndex === index ? null : index)}
-                  className="w-full px-6 py-5 flex items-center justify-between text-left focus:outline-none group"
+                  className="w-full px-4 py-4 sm:px-6 sm:py-5 flex items-center justify-between text-left focus:outline-none group"
                 >
                   <span className="flex items-center gap-4">
                     <span className={`font-heading text-sm font-bold w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 transition-colors duration-300 ${
@@ -164,7 +164,7 @@ export function FAQ() {
                     }`}>
                       {String(index + 1).padStart(2, '0')}
                     </span>
-                    <span className="font-heading font-semibold text-lg text-[var(--color-bee-black)]">
+                    <span className="font-heading font-semibold text-sm sm:text-lg text-[var(--color-bee-black)]">
                       {faq.question}
                     </span>
                   </span>
@@ -182,7 +182,7 @@ export function FAQ() {
                       exit={{ height: 0, opacity: 0 }}
                       transition={{ duration: 0.3, ease: "easeInOut" }}
                     >
-                      <div className="px-6 pb-5 pl-[4.5rem] text-gray-600 leading-relaxed">
+                      <div className="px-4 pb-4 pl-12 sm:px-6 sm:pb-5 sm:pl-[4.5rem] text-sm sm:text-base text-gray-600 leading-relaxed">
                         {faq.answer}
                       </div>
                     </motion.div>
@@ -198,7 +198,7 @@ export function FAQ() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mt-20 text-center bg-white rounded-3xl p-10 border border-gray-100 shadow-sm"
+          className="mt-12 sm:mt-20 text-center bg-white rounded-3xl p-6 sm:p-10 border border-gray-100 shadow-sm"
         >
           <MessageCircle className="h-10 w-10 text-[var(--color-bee-yellow)] mx-auto mb-4" />
           <h3 className="font-heading text-2xl font-bold text-[var(--color-bee-black)] mb-3">

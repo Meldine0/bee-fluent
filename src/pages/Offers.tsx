@@ -51,8 +51,8 @@ const tiers = [
 
 export function Offers() {
   return (
-    <div className="bg-[#FDFCF8] py-24 sm:py-32">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+    <div className="bg-[#FDFCF8] py-12 sm:py-24 lg:py-32">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-3xl text-center mb-24">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -61,7 +61,7 @@ export function Offers() {
             <h2 className="text-sm font-bold uppercase tracking-widest text-gray-400 mb-4">
               Investissement
             </h2>
-            <p className="mt-2 font-heading text-5xl font-extrabold tracking-tight text-[var(--color-bee-black)] sm:text-6xl leading-tight">
+            <p className="mt-2 font-heading text-3xl font-extrabold tracking-tight text-[var(--color-bee-black)] sm:text-5xl lg:text-6xl leading-tight">
               Un programme pour chaque âge. <br/>
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-gray-400 to-gray-300">Un tarif pour chaque budget.</span>
             </p>
@@ -79,7 +79,7 @@ export function Offers() {
                 tier.mostPopular
                   ? 'bg-[var(--color-bee-black)] text-white shadow-2xl lg:scale-105 z-10'
                   : 'bg-white text-[var(--color-bee-black)] border border-gray-100 shadow-sm hover:shadow-lg',
-                'rounded-[2rem] p-10 relative flex flex-col hover:-translate-y-1 transition-all duration-300'
+                'rounded-[2rem] p-6 sm:p-10 relative flex flex-col hover:-translate-y-1 transition-all duration-300'
               )}
             >
               {tier.mostPopular && (
@@ -143,7 +143,7 @@ export function Offers() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
             >
-              <h2 className="font-heading text-3xl font-bold text-[var(--color-bee-black)]">
+              <h2 className="font-heading text-xl sm:text-3xl font-bold text-[var(--color-bee-black)]">
                 Où que vous soyez, on s'adapte
               </h2>
               <p className="mt-4 text-lg text-gray-600">
