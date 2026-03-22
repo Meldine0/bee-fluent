@@ -58,8 +58,8 @@ export function Home() {
             >
               <div className="aspect-[4/5] rounded-[2rem] overflow-hidden shadow-2xl relative border border-gray-100 img-zoom">
                 <img
-                  src="/teacher.jpg"
-                  alt="Enseignant en salle de classe"
+                  src="/sarah.jpeg"
+                  alt="Sarah Beale, professeure d'anglais"
                   className="object-cover w-full h-full"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
