@@ -9,11 +9,12 @@ import { useSearchParams } from 'react-router-dom';
 
 const DEFAULT_TIMES = ['09:00', '10:30', '14:00', '15:30', '17:00'];
 
-const PACKS: Record<string, { name: string; sessions: number; price: string; unit: string; description: string; features: string[]; popular: boolean }> = {
+const PACKS: Record<string, { name: string; sessions: number; price: string; cesuPrice: string; unit: string; description: string; features: string[]; popular: boolean }> = {
   single: {
     name: 'Séance Découverte',
     sessions: 1,
-    price: '45€',
+    price: '60€',
+    cesuPrice: '30€',
     unit: '/ séance',
     description: 'Pour tester, ou pour un besoin ponctuel.',
     features: ['1 heure de coaching oral', 'Diagnostic de niveau', 'Correction en direct', 'Compte-rendu de séance'],
@@ -23,6 +24,7 @@ const PACKS: Record<string, { name: string; sessions: number; price: string; uni
     name: 'Pack Intensif',
     sessions: 5,
     price: '200€',
+    cesuPrice: '100€',
     unit: '/ 5 séances',
     description: 'Des résultats visibles en moins d\'un mois.',
     features: ['5 heures de coaching', 'Programme personnalisé', 'Exercices entre séances', 'Suivi de progression'],
@@ -32,6 +34,7 @@ const PACKS: Record<string, { name: string; sessions: number; price: string; uni
     name: 'Immersion Totale',
     sessions: 10,
     price: '380€',
+    cesuPrice: '190€',
     unit: '/ 10 séances',
     description: 'Pour changer vraiment de niveau.',
     features: ['10 heures de coaching', 'Bilan initial complet', 'Prépa exam / entretien', 'WhatsApp entre les séances'],
@@ -237,10 +240,18 @@ export function Booking() {
                       <p className={`text-sm ${isSelected ? 'text-gray-400' : 'text-gray-500'}`}>{p.description}</p>
                     </div>
                     <div className="mb-6">
-                      <span className={`text-4xl font-extrabold font-heading ${isSelected ? 'text-[var(--color-bee-yellow)]' : 'text-[var(--color-bee-black)]'}`}>
-                        {p.price}
-                      </span>
-                      <span className={`text-sm ml-1 ${isSelected ? 'text-gray-400' : 'text-gray-400'}`}>{p.unit}</span>
+                      <div className="flex items-baseline gap-2 flex-wrap">
+                        <span className={`text-4xl font-extrabold font-heading ${isSelected ? 'text-[var(--color-bee-yellow)]' : 'text-[var(--color-bee-black)]'}`}>
+                          {p.cesuPrice}
+                        </span>
+                        <span className={`text-sm ${isSelected ? 'text-gray-400' : 'text-gray-400'}`}>{p.unit}</span>
+                      </div>
+                      <div className="mt-1 flex items-center gap-2 flex-wrap">
+                        <span className={`text-sm line-through ${isSelected ? 'text-gray-500' : 'text-gray-400'}`}>{p.price}</span>
+                        <span className={`text-xs font-semibold px-2 py-0.5 rounded-full ${isSelected ? 'bg-green-800 text-green-200' : 'bg-green-100 text-green-700'}`}>
+                          après crédit d'impôt
+                        </span>
+                      </div>
                     </div>
                     <ul className="space-y-2">
                       {p.features.map((f) => (
@@ -277,9 +288,15 @@ export function Booking() {
         <>
         {/* Pack info + bouton modifier */}
         <div className="flex items-center justify-center gap-3 mb-6">
-          <span className="inline-flex items-center gap-2 bg-[var(--color-bee-yellow)] text-[var(--color-bee-black)] px-5 py-2 rounded-full text-sm font-bold shadow-sm">
-            {pack.name} — {pack.sessions} {pack.sessions > 1 ? 'séances' : 'séance'} — {pack.price}
-          </span>
+          <div className="flex flex-col items-center gap-1">
+            <span className="inline-flex items-center gap-2 bg-[var(--color-bee-yellow)] text-[var(--color-bee-black)] px-5 py-2 rounded-full text-sm font-bold shadow-sm">
+              {pack.name} — {pack.sessions} {pack.sessions > 1 ? 'séances' : 'séance'}
+            </span>
+            <span className="text-xs text-gray-500">
+              <span className="line-through text-gray-400">{pack.price}</span>
+              {' '}→ <span className="font-bold text-green-600">{pack.cesuPrice}</span> après crédit d'impôt
+            </span>
+          </div>
           {step < 3 && (
             <button
               onClick={() => { setStep(0); setSelectedSlots([]); }}
