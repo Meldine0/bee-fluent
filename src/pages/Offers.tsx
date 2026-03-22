@@ -39,7 +39,7 @@ const tiers = [
     href: '/reservation?pack=full',
     price: '380',
     unit: '/ 10 séances',
-    description: 'Pour changer vraiment de niveau — à tout âge, avec ou sans bases.',
+    description: 'Pour changer vraiment de niveau, à tout âge, avec ou sans bases.',
     features: [
       '10 heures de coaching',
       'Bilan initial approfondi',
@@ -157,7 +157,7 @@ export function Offers() {
                 Où que vous soyez, on s'adapte
               </h2>
               <p className="mt-4 text-lg text-gray-600">
-                En visio depuis votre canapé ou en face à face dans les Alpes-Maritimes — la qualité du coaching est la même.
+                En visio depuis votre canapé ou en face à face dans les Alpes-Maritimes. La qualité du coaching est la même.
               </p>
             </motion.div>
           </div>
@@ -183,7 +183,7 @@ export function Offers() {
               <div className="p-8">
                 <h3 className="font-heading text-2xl font-bold mb-3">Visioconférence</h3>
                 <p className="text-gray-600 leading-relaxed">
-                  Disponible partout en France. Depuis votre bureau, votre salon ou en déplacement. On se connecte sur Zoom ou Google Meet — c'est aussi efficace qu'en présentiel, et beaucoup plus flexible.
+                  Disponible partout en France. Depuis votre bureau, votre salon ou en déplacement. On se connecte sur Zoom ou Google Meet, c'est aussi efficace qu'en présentiel et beaucoup plus flexible.
                 </p>
               </div>
             </motion.div>

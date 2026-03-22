@@ -21,18 +21,18 @@ export function About() {
                     Pourquoi Bee Fluent
                   </h2>
                   <p className="mt-2 font-heading text-2xl font-extrabold tracking-tight text-[var(--color-bee-black)] sm:text-4xl lg:text-5xl leading-tight">
-                    L'anglais pour tous — du CP au monde professionnel.
+                    L'anglais pour tous, du CP au monde professionnel.
                   </p>
 
                   <div className="mt-6 sm:mt-10 space-y-4 sm:space-y-6 text-base sm:text-lg leading-relaxed text-gray-600">
                     <p>
-                      J'accompagne des enfants dès 7 ans, des ados qui préparent leur brevet ou leur bac, des étudiants en école de commerce, et des adultes qui veulent progresser dans leur carrière ou partir à l'étranger. Ce qui les relie ? Ils veulent tous parler — vraiment parler — et pas juste cocher des cases.
+                      J'accompagne des enfants dès 7 ans, des ados qui préparent leur brevet ou leur bac, des étudiants en école de commerce, et des adultes qui veulent progresser dans leur carrière ou partir à l'étranger. Ce qui les relie ? Ils veulent tous parler, vraiment parler, pas juste cocher des cases.
                     </p>
                     <p>
-                      J'ai créé Bee Fluent parce que le système scolaire apprend à analyser la langue, pas à la vivre. Peu importe l'âge, la méthode est la même : on parle, on pratique, on construit des automatismes. Ce qui change, c'est le rythme, le ton et les exercices — adaptés à chaque profil.
+                      J'ai créé Bee Fluent parce que le système scolaire apprend à analyser la langue, pas à la vivre. Peu importe l'âge, la méthode est la même : on parle, on pratique, on construit des automatismes. Ce qui change, c'est le rythme, le ton et les exercices, adaptés à chaque profil.
                     </p>
                     <p className="font-medium text-[var(--color-bee-black)] border-l-4 border-[var(--color-bee-yellow)] pl-6">
-                      Je ne suis pas là pour noter. Je suis là pour donner confiance — que vous ayez 8 ans ou 45 ans.
+                      Je ne suis pas là pour noter. Je suis là pour donner confiance, que vous ayez 8 ans ou 45 ans.
                     </p>
                   </div>
 
@@ -107,17 +107,17 @@ export function About() {
               {
                 icon: MessageCircle,
                 title: "On parle dès la 1ère minute",
-                desc: "Enfants, ados, adultes — tout le monde parle dès qu'on commence. Pas de slides, pas de théorie. On apprend en faisant.",
+                desc: "Enfants, ados, adultes : tout le monde parle dès qu'on commence. Pas de slides, pas de théorie. On apprend en faisant.",
               },
               {
                 icon: Heart,
                 title: "Zéro jugement, quel que soit l'âge",
-                desc: "Un enfant de 8 ans ou un adulte de 50 ans — tout le monde a le droit de se tromper, d'hésiter, de recommencer. C'est ça qui fait progresser.",
+                desc: "Un enfant de 8 ans ou un adulte de 50 ans : tout le monde a le droit de se tromper, d'hésiter, de recommencer. C'est ça qui fait progresser.",
               },
               {
                 icon: BookOpen,
                 title: "Adapté à chaque profil",
-                desc: "Bac, TOEIC, entretien, voyage, curiosité — le programme change selon l'objectif. L'âge n'est jamais un obstacle.",
+                desc: "Bac, TOEIC, entretien, voyage, curiosité : le programme change selon l'objectif. L'âge n'est jamais un obstacle.",
               },
             ].map((value, i) => (
               <motion.div

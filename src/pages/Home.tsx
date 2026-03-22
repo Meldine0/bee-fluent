@@ -34,7 +34,7 @@ export function Home() {
                 </span>
               </h1>
               <p className="text-base sm:text-xl text-gray-600 mb-8 max-w-lg leading-relaxed font-medium">
-                Peu importe l'âge, le niveau ou l'objectif — scolaire, pro, voyage ou simple confiance à l'oral. Chaque élève a son propre programme, construit rien que pour lui.
+                Peu importe l'âge, le niveau ou l'objectif : scolaire, pro, voyage ou simple confiance à l'oral. Chaque élève a son propre programme, construit rien que pour lui.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Link to="/reservation">
@@ -177,7 +177,7 @@ export function Home() {
                   <span className="text-transparent bg-clip-text bg-gradient-to-r from-gray-400 to-gray-300">Efficace pour tous.</span>
                 </h2>
                 <p className="text-base sm:text-xl text-gray-600 mb-6 sm:mb-8 leading-relaxed">
-                  Que ce soit pour préparer un bac, décrocher un stage, partir à l'étranger ou juste gagner en confiance — la méthode s'adapte à l'objectif et à l'âge de chaque élève.
+                  Que ce soit pour préparer un bac, décrocher un stage, partir à l'étranger ou juste gagner en confiance : la méthode s'adapte à l'objectif et à l'âge de chaque élève.
                 </p>
                 <Link to="/presentation" className="group inline-flex items-center gap-2 font-bold text-[var(--color-bee-black)] text-lg">
                   <span className="border-b-2 border-[var(--color-bee-black)] group-hover:border-[var(--color-bee-yellow)] transition-colors pb-1">Voir la méthode complète</span>
@@ -191,7 +191,7 @@ export function Home() {
                 {
                   num: "01",
                   title: "On part de là où vous en êtes",
-                  desc: "Enfant qui débute, ado qui prépare un exam, adulte qui veut progresser au travail — on cerne votre niveau et votre objectif dès la première séance."
+                  desc: "Enfant qui débute, ado qui prépare un exam, adulte qui veut progresser au travail : on cerne votre niveau et votre objectif dès la première séance."
                 },
                 {
                   num: "02",
@@ -304,7 +304,7 @@ export function Home() {
                 <span className="text-[var(--color-bee-yellow)]">comme une seconde langue.</span>
               </h2>
               <p className="text-gray-400 text-lg leading-relaxed mb-4">
-                Vous vivez en France, vous accueillez des proches étrangers, ou vous souhaitez apprendre le français ? Sarah propose également des cours de français langue étrangère (FLE) — pour enfants, ados et adultes.
+                Vous vivez en France, vous accueillez des proches étrangers, ou vous souhaitez apprendre le français ? Sarah propose également des cours de français langue étrangère (FLE), pour enfants, ados et adultes.
               </p>
               <p className="text-gray-500 text-base leading-relaxed mb-8">
                 Même méthode : 100% oral, sur-mesure, bienveillant. La même exigence, dans l'autre langue.
@@ -411,7 +411,7 @@ export function Home() {
               Un cours pour chaque élève. Vraiment.
             </h2>
             <p className="text-base sm:text-xl text-gray-400 mb-8 sm:mb-12 max-w-2xl mx-auto">
-              Enfant, ado, étudiant ou adulte — il y a un programme fait pour vous. Le nombre de places est limité pour garantir un suivi de qualité.
+              Enfant, ado, étudiant ou adulte : il y a un programme fait pour vous. Le nombre de places est limité pour garantir un suivi de qualité.
             </p>
             <Link to="/offres">
               <Button size="lg" className="h-14 px-8 sm:px-12 text-lg sm:text-xl rounded-full shadow-xl shadow-yellow-500/20 glow-yellow hover:-translate-y-0.5 transition-all duration-300">

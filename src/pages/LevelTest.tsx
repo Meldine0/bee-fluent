@@ -14,8 +14,8 @@ const LEVEL_DATA = {
     name: 'Beginner',
     color: 'blue',
     title: 'You are A1/A2 – Beginner',
-    explanation: 'Tu connais quelques mots, mais la grammaire et les structures de base restent fragiles. C\'est le meilleur moment pour construire des fondations solides — sans mauvaises habitudes.',
-    trigger: 'La bonne nouvelle ? Avec la bonne méthode, les progrès à ce niveau arrivent vite — vraiment vite. 🚀',
+    explanation: 'Tu connais quelques mots, mais la grammaire et les structures de base restent fragiles. C\'est le meilleur moment pour construire des fondations solides, sans mauvaises habitudes.',
+    trigger: 'La bonne nouvelle ? Avec la bonne méthode, les progrès à ce niveau arrivent vite. Vraiment vite. 🚀',
     pack: '/reservation?pack=full',
     packLabel: 'Démarrer l\'Immersion Totale',
   },
@@ -34,7 +34,7 @@ const LEVEL_DATA = {
     name: 'Upper-Intermediate',
     color: 'orange',
     title: 'You are B2 – Upper-Intermediate',
-    explanation: 'Tu maîtrises bien l\'anglais. Mais à l\'oral, il manque encore ce petit quelque chose — la fluidité, le naturel, l\'aisance spontanée. C\'est exactement là qu\'on intervient.',
+    explanation: 'Tu maîtrises bien l\'anglais. Mais à l\'oral, il manque encore ce petit quelque chose : la fluidité, le naturel, l\'aisance spontanée. C\'est exactement là qu\'on intervient.',
     trigger: 'Le C1 est à portée de main. Il suffit de travailler les bons points. 🎯',
     pack: '/reservation?pack=5',
     packLabel: 'Démarrer le Pack Intensif',
@@ -45,7 +45,7 @@ const LEVEL_DATA = {
     color: 'green',
     title: 'You are C1 – Advanced',
     explanation: 'Excellent niveau ! Tu maîtrises l\'anglais avec aisance. Quelques séances suffiront pour peaufiner ton accent, ta spontanéité et tes expressions idiomatiques.',
-    trigger: 'Même les meilleurs ont une marge de progression — et on adore travailler avec les bons niveaux 😉',
+    trigger: 'Même les meilleurs ont une marge de progression. Et on adore travailler avec les bons niveaux 😉',
     pack: '/reservation?pack=single',
     packLabel: 'Réserver une séance découverte',
   },
@@ -184,7 +184,7 @@ export function LevelTest() {
                   Testez votre niveau d'anglais
                 </h1>
                 <p className="text-gray-500 text-base sm:text-lg mb-4 max-w-xl mx-auto">
-                  10 questions pour savoir exactement où vous en êtes — et ce qu'il faut travailler.
+                  10 questions pour savoir exactement où vous en êtes, et ce qu'il faut travailler.
                 </p>
                 <div className="flex items-center justify-center gap-6 text-sm text-gray-400">
                   <span className="flex items-center gap-1.5"><Target className="h-4 w-4" /> 10 questions</span>

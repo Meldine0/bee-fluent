@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 const faqs = [
   {
     question: "Comment se passe une séance concrètement ?",
-    answer: "On se connecte sur Zoom ou Google Meet (ou on se retrouve en Alpes-Maritimes pour le présentiel). Pas de slides ni de théorie. On parle. Je vous propose des situations réelles — entretien, réunion, voyage, quotidien — et je vous corrige en temps réel, avec bienveillance. Chaque séance est différente parce qu'elle est construite autour de ce dont vous avez besoin ce jour-là."
+    answer: "On se connecte sur Zoom ou Google Meet (ou on se retrouve en Alpes-Maritimes pour le présentiel). Pas de slides ni de théorie. On parle. Je vous propose des situations réelles : entretien, réunion, voyage, quotidien. Je vous corrige en temps réel, avec bienveillance. Chaque séance est différente parce qu'elle est construite autour de ce dont vous avez besoin ce jour-là."
   },
   {
     question: "C'est quoi la méthode Bee Fluent ?",
@@ -19,11 +19,11 @@ const faqs = [
   },
   {
     question: "À partir de quel âge peut-on commencer ?",
-    answer: "On accompagne des enfants dès 7 ans. Les séances pour les plus jeunes sont courtes (30 à 45 min), dynamiques, et basées sur le jeu et l'écoute — pas de grammaire imposée. Pour les ados, on s'adapte à leurs centres d'intérêt pour que les séances ne ressemblent pas à un cours classique."
+    answer: "On accompagne des enfants dès 7 ans. Les séances pour les plus jeunes sont courtes (30 à 45 min), dynamiques, et basées sur le jeu et l'écoute, sans grammaire imposée. Pour les ados, on s'adapte à leurs centres d'intérêt pour que les séances ne ressemblent pas à un cours classique."
   },
   {
     question: "Je suis débutant, est-ce que c'est fait pour moi ?",
-    answer: "Oui, complètement. Que vous ayez 10 ans ou 50 ans, que vous partiez de zéro ou que vous ayez des bases à consolider — on part de là où vous en êtes. Aucun niveau minimum requis."
+    answer: "Oui, complètement. Que vous ayez 10 ans ou 50 ans, que vous partiez de zéro ou que vous ayez des bases à consolider, on part de là où vous en êtes. Aucun niveau minimum requis."
   },
   {
     question: "Puis-je annuler ou décaler une séance ?",
@@ -47,11 +47,11 @@ const faqs = [
   },
   {
     question: "Est-ce qu'il y a du travail entre les séances ?",
-    answer: "Ce n'est pas obligatoire — surtout pour les plus jeunes. On propose des petites ressources adaptées à l'âge : une chanson, une vidéo courte, un jeu en ligne. Pour les ados et adultes, des podcasts ou articles courts pour garder l'anglais dans le quotidien, sans que ça devienne une corvée."
+    answer: "Ce n'est pas obligatoire, surtout pour les plus jeunes. On propose des petites ressources adaptées à l'âge : une chanson, une vidéo courte, un jeu en ligne. Pour les ados et adultes, des podcasts ou articles courts pour garder l'anglais dans le quotidien, sans que ça devienne une corvée."
   },
   {
     question: "Mon enfant est timide et n'ose pas parler anglais. Est-ce que ça peut quand même marcher ?",
-    answer: "C'est exactement le profil qu'on aide le mieux. Les enfants timides ont souvent peur du jugement — et c'est justement ce qu'on élimine dès la première séance. Sarah a une façon de mettre les enfants à l'aise très rapidement. En général, après 2 ou 3 séances, même les plus réservés commencent à se lancer."
+    answer: "C'est exactement le profil qu'on aide le mieux. Les enfants timides ont souvent peur du jugement. C'est justement ce qu'on élimine dès la première séance. Sarah a une façon de mettre les enfants à l'aise très rapidement. En général, après 2 ou 3 séances, même les plus réservés commencent à se lancer."
   },
   {
     question: "Anglais britannique ou américain ?",
@@ -59,7 +59,7 @@ const faqs = [
   },
   {
     question: "Puis-je enregistrer les séances ?",
-    answer: "Oui. C'est même recommandé. Se réécouter quelques semaines plus tard, c'est l'un des meilleurs moyens de mesurer sa progression — et d'entendre concrètement là où on s'est amélioré."
+    answer: "Oui. C'est même recommandé. Se réécouter quelques semaines plus tard, c'est l'un des meilleurs moyens de mesurer sa progression et d'entendre concrètement là où on s'est amélioré."
   },
   {
     question: "Comment je paye ?",
@@ -75,7 +75,7 @@ const faqs = [
   },
   {
     question: "Vous proposez des créneaux le soir et le week-end ?",
-    answer: "Oui. On a des créneaux tôt le matin, tard le soir et le samedi pour s'adapter aux actifs. Les disponibilités varient selon les semaines — regardez le calendrier en ligne pour voir ce qui vous convient."
+    answer: "Oui. On a des créneaux tôt le matin, tard le soir et le samedi pour s'adapter aux actifs. Les disponibilités varient selon les semaines. Regardez le calendrier en ligne pour voir ce qui vous convient."
   }
 ];
 
@@ -204,7 +204,7 @@ export function FAQ() {
           <h3 className="font-heading text-2xl font-bold text-[var(--color-bee-black)] mb-3">
             Votre question n'est pas là ?
           </h3>
-          <p className="text-gray-600 mb-6">Écrivez-nous, on répond sous 24h — souvent bien moins.</p>
+          <p className="text-gray-600 mb-6">Écrivez-nous, on répond sous 24h, souvent bien moins.</p>
           <Link to="mailto:contact@beefluent.fr">
             <Button variant="outline" className="rounded-full px-8">
               Nous écrire
