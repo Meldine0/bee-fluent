@@ -130,9 +130,9 @@ export function Home() {
               Offre de lancement
             </span>
             <p className="text-white font-heading text-lg sm:text-xl font-bold text-center sm:text-left">
-              Première séance :{' '}
-              <span className="line-through text-gray-500">60€</span>{' '}
-              <span className="text-[var(--color-bee-yellow)]">→ 30€ seulement</span>
+              Première séance à 60€ —{' '}
+              <span className="text-[var(--color-bee-yellow)]">vous ne payez que 30€</span>
+              <span className="text-gray-400 text-sm font-normal ml-2">après crédit d'impôt</span>
             </p>
           </div>
           <Link to="/reservation?pack=single" className="flex-shrink-0">
