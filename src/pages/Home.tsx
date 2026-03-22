@@ -1,6 +1,6 @@
 import { motion } from 'motion/react';
 import { Button } from '../components/ui/Button';
-import { ArrowRight, Star, Users, Award, TrendingUp } from 'lucide-react';
+import { ArrowRight, Star, Users, Award, TrendingUp, Globe, BookMarked, FolderOpen } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 export function Home() {
@@ -20,10 +20,13 @@ export function Home() {
               transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
               className="max-w-2xl"
             >
-              <div className="inline-flex items-center gap-2 rounded-full border border-[var(--color-bee-yellow)] bg-yellow-50/50 px-4 py-1.5 text-sm font-medium text-yellow-900 mb-8 shadow-sm">
+              <div className="inline-flex items-center gap-2 rounded-full border border-[var(--color-bee-yellow)] bg-yellow-50/50 px-4 py-1.5 text-sm font-medium text-yellow-900 mb-6 shadow-sm">
                 <Star className="h-4 w-4 fill-current text-[var(--color-bee-yellow)]" />
                 <span>Enfants · Ados · Étudiants · Adultes</span>
               </div>
+              <p className="font-heading text-lg sm:text-xl italic text-gray-400 mb-4 tracking-wide">
+                Let your English fly ✨
+              </p>
               <h1 className="font-heading text-4xl font-extrabold tracking-tight text-[var(--color-bee-black)] sm:text-6xl lg:text-[5.5rem] mb-6 leading-[1.05]">
                 L'anglais pour <br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-[var(--color-bee-yellow)] to-yellow-600">
@@ -118,6 +121,27 @@ export function Home() {
           </div>
         </div>
       </section>
+
+      {/* Promo Banner */}
+      <div className="bg-[var(--color-bee-black)] py-5">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div className="flex items-center gap-3 flex-wrap justify-center sm:justify-start">
+            <span className="bg-[var(--color-bee-yellow)] text-[var(--color-bee-black)] text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide whitespace-nowrap">
+              Offre de lancement
+            </span>
+            <p className="text-white font-heading text-lg sm:text-xl font-bold text-center sm:text-left">
+              Première séance :{' '}
+              <span className="line-through text-gray-500">60€</span>{' '}
+              <span className="text-[var(--color-bee-yellow)]">→ 30€ seulement</span>
+            </p>
+          </div>
+          <Link to="/reservation?pack=single" className="flex-shrink-0">
+            <Button size="sm" className="rounded-full px-6 whitespace-nowrap">
+              J'en profite <ArrowRight className="ml-1.5 h-4 w-4" />
+            </Button>
+          </Link>
+        </div>
+      </div>
 
       {/* Marquee Section */}
       <div className="w-full overflow-hidden bg-[var(--color-bee-yellow)] py-4">
@@ -259,6 +283,118 @@ export function Home() {
               </motion.div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* Learn French Section */}
+      <section className="py-16 sm:py-24 bg-[var(--color-bee-black)] relative overflow-hidden">
+        <div className="absolute top-0 right-0 w-96 h-96 bg-yellow-500/5 rounded-full blur-3xl" />
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+            >
+              <span className="inline-flex items-center gap-2 bg-yellow-500/10 text-[var(--color-bee-yellow)] text-xs font-bold px-3 py-1.5 rounded-full uppercase tracking-wide mb-6">
+                <Globe className="h-3.5 w-3.5" /> Nouveau service
+              </span>
+              <h2 className="font-heading text-3xl sm:text-4xl font-extrabold text-white mb-6 leading-tight">
+                Apprenez le français<br />
+                <span className="text-[var(--color-bee-yellow)]">comme une seconde langue.</span>
+              </h2>
+              <p className="text-gray-400 text-lg leading-relaxed mb-4">
+                Vous vivez en France, vous accueillez des proches étrangers, ou vous souhaitez apprendre le français ? Sarah propose également des cours de français langue étrangère (FLE) — pour enfants, ados et adultes.
+              </p>
+              <p className="text-gray-500 text-base leading-relaxed mb-8">
+                Même méthode : 100% oral, sur-mesure, bienveillant. La même exigence, dans l'autre langue.
+              </p>
+              <Link to="/reservation">
+                <Button size="lg" className="h-14 px-8 rounded-full shadow-lg shadow-yellow-500/20">
+                  Réserver un cours de français <ArrowRight className="ml-2 h-5 w-5" />
+                </Button>
+              </Link>
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="grid grid-cols-2 gap-4"
+            >
+              {[
+                { icon: Globe, title: 'Pour non-francophones', desc: 'Étrangers en France qui veulent s\'intégrer et communiquer au quotidien.' },
+                { icon: BookMarked, title: 'Pour les familles', desc: 'Enfants ou parents qui souhaitent progresser en français à leur rythme.' },
+                { icon: Star, title: 'Même méthode', desc: '100% oral, zéro jugement, sur-mesure selon votre objectif et votre niveau.' },
+                { icon: TrendingUp, title: 'Résultats rapides', desc: 'Les premières améliorations se ressentent dès la 2e ou 3e séance.' },
+              ].map((item, i) => (
+                <div key={i} className="bg-white/5 rounded-2xl p-5 border border-white/10 hover:bg-white/10 transition-colors duration-300">
+                  <item.icon className="h-6 w-6 text-[var(--color-bee-yellow)] mb-3" />
+                  <p className="font-heading font-bold text-white text-sm mb-1">{item.title}</p>
+                  <p className="text-gray-500 text-xs leading-relaxed">{item.desc}</p>
+                </div>
+              ))}
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* Monthly Subscription Section */}
+      <section className="py-16 sm:py-24 bg-[#FDFCF8]">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="bg-gradient-to-br from-yellow-50 to-white rounded-3xl p-8 sm:p-12 border border-yellow-100 shadow-sm"
+          >
+            <div className="flex flex-col lg:flex-row items-center gap-10 lg:gap-16">
+              <div className="flex-1">
+                <span className="inline-flex items-center gap-2 bg-[var(--color-bee-yellow)] text-[var(--color-bee-black)] text-xs font-bold px-3 py-1.5 rounded-full uppercase tracking-wide mb-6">
+                  <FolderOpen className="h-3.5 w-3.5" /> Abonnement mensuel
+                </span>
+                <h2 className="font-heading text-2xl sm:text-3xl font-extrabold text-[var(--color-bee-black)] mb-4 leading-tight">
+                  En plus de vos séances,<br />
+                  un accès à toutes vos ressources.
+                </h2>
+                <p className="text-gray-600 leading-relaxed mb-6">
+                  En vous abonnant mensuellement, vous débloquez un espace Google Drive personnel avec des dizaines de ressources soigneusement choisies pour booster votre progression entre les séances.
+                </p>
+                <ul className="space-y-3 mb-8">
+                  {[
+                    'Fiches de grammaire claires et illustrées',
+                    'Vocabulaire thématique (business, voyage, quotidien, examens)',
+                    'Exercices de prononciation et d\'intonation',
+                    'Podcasts et vidéos recommandés par niveau',
+                    'Nouvelles ressources ajoutées chaque mois',
+                  ].map((item, i) => (
+                    <li key={i} className="flex items-start gap-3 text-gray-700 text-sm">
+                      <span className="w-5 h-5 rounded-full bg-[var(--color-bee-yellow)] flex items-center justify-center flex-shrink-0 mt-0.5">
+                        <Star className="h-3 w-3 text-[var(--color-bee-black)]" />
+                      </span>
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+                <Link to="/offres">
+                  <Button size="lg" className="h-14 px-8 rounded-full shadow-lg shadow-yellow-500/15">
+                    Voir les programmes <ArrowRight className="ml-2 h-5 w-5" />
+                  </Button>
+                </Link>
+              </div>
+              <div className="lg:w-72 w-full flex-shrink-0">
+                <div className="bg-[var(--color-bee-black)] rounded-3xl p-8 text-center shadow-xl">
+                  <FolderOpen className="h-12 w-12 text-[var(--color-bee-yellow)] mx-auto mb-4" />
+                  <p className="font-heading font-extrabold text-white text-4xl mb-2">∞</p>
+                  <p className="text-white font-bold text-lg mb-1">Accès illimité</p>
+                  <p className="text-gray-400 text-sm mb-6">à toutes les ressources du Drive</p>
+                  <div className="bg-white/10 rounded-2xl p-4">
+                    <p className="text-[var(--color-bee-yellow)] text-xs font-bold uppercase tracking-wide mb-1">Inclus avec</p>
+                    <p className="text-white text-sm font-medium">Tout abonnement mensuel</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </motion.div>
         </div>
       </section>
 

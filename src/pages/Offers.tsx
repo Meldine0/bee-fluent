@@ -9,11 +9,13 @@ const tiers = [
     name: 'Séance Découverte',
     id: 'tier-single',
     href: '/reservation?pack=single',
-    price: '45',
+    price: '30',
+    originalPrice: '60',
     unit: '/ séance',
     description: 'Idéal pour tester, pour un besoin ponctuel ou pour un enfant qui commence.',
     features: ['1 heure de coaching oral', 'Diagnostic de niveau', 'Correction en temps réel', 'Compte-rendu de séance'],
     mostPopular: false,
+    promo: 'Offre de lancement',
   },
   {
     name: 'Pack Intensif',
@@ -87,6 +89,11 @@ export function Offers() {
                   Le plus choisi
                 </div>
               )}
+              {'promo' in tier && tier.promo && (
+                <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-green-500 text-white px-6 py-1.5 rounded-full text-sm font-bold tracking-wide shadow-sm whitespace-nowrap">
+                  {tier.promo}
+                </div>
+              )}
 
               <div className="mb-8">
                 <h3 id={tier.id} className="font-heading text-2xl font-bold mb-4">
@@ -98,6 +105,9 @@ export function Offers() {
               </div>
 
               <div className="mb-8 editorial-divider pb-8 border-opacity-20">
+                {'originalPrice' in tier && tier.originalPrice && (
+                  <span className={cn(tier.mostPopular ? 'text-gray-500' : 'text-gray-400', "line-through text-2xl mr-2")}>{tier.originalPrice}€</span>
+                )}
                 <span className="text-5xl font-extrabold tracking-tight">{tier.price}€</span>
                 <span className={cn(tier.mostPopular ? 'text-gray-500' : 'text-gray-400', "text-sm ml-2")}>{tier.unit}</span>
               </div>

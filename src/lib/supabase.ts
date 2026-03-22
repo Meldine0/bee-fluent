@@ -37,6 +37,7 @@ export async function saveLead(data: {
   phone?: string;
   score: number;
   total: number;
+  level?: string;
 }) {
   const { error } = await supabase.from('leads').insert([data]);
   if (error) throw error;
