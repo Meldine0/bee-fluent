@@ -58,18 +58,17 @@ export function Home() {
             >
               <div className="aspect-[4/5] rounded-[2rem] overflow-hidden shadow-2xl relative border border-gray-100 img-zoom">
                 <img
-                  src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&q=80&w=1200"
-                  alt="Femme confiante en milieu professionnel"
+                  src="/teacher.jpg"
+                  alt="Enseignant en salle de classe"
                   className="object-cover w-full h-full"
-                  referrerPolicy="no-referrer"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
 
                 <div className="absolute bottom-8 left-8 right-8">
                   <p className="text-white font-heading text-2xl font-semibold leading-snug">
-                    "Mon fils a eu 18 à son oral du bac. Il détestait l'anglais avant."
+                    "Un prof qui s'adapte vraiment à chaque élève, à chaque âge."
                   </p>
-                  <p className="text-white/80 mt-2 text-sm font-medium">— Caroline, maman de Lucas, 17 ans</p>
+                  <p className="text-white/80 mt-2 text-sm font-medium">— Méthode Bee Fluent</p>
                 </div>
               </div>
 
