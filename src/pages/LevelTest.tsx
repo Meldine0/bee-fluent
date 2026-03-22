@@ -68,7 +68,7 @@ async function sendResultEmail(
   weakPoints: string[]
 ) {
   try {
-    await fetch('https://formsubmit.co/ajax/beefluent06@gmail.com', {
+    await fetch('https://formsubmit.co/ajax/contact@beefluent.fr', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
       body: JSON.stringify({

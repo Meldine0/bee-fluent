@@ -205,7 +205,7 @@ export function FAQ() {
             Votre question n'est pas là ?
           </h3>
           <p className="text-gray-600 mb-6">Écrivez-nous, on répond sous 24h — souvent bien moins.</p>
-          <Link to="mailto:hello@beefluent.fr">
+          <Link to="mailto:contact@beefluent.fr">
             <Button variant="outline" className="rounded-full px-8">
               Nous écrire
             </Button>

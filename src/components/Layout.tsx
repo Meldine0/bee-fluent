@@ -139,7 +139,7 @@ export function Layout() {
               </div>
               <div className="flex flex-col gap-3">
                 <span className="font-heading font-semibold text-lg">Contact</span>
-                <a href="mailto:hello@beefluent.fr" className="text-gray-400 hover:text-white transition-colors">hello@beefluent.fr</a>
+                <a href="mailto:contact@beefluent.fr" className="text-gray-400 hover:text-white transition-colors">contact@beefluent.fr</a>
                 <span className="text-gray-400">Visioconférence (France) & Présentiel (Alpes-Maritimes)</span>
               </div>
             </div>
