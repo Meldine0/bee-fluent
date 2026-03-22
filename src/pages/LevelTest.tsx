@@ -6,13 +6,12 @@ import { Link } from 'react-router-dom';
 import { questions } from '../data/questions';
 import { saveLead } from '../lib/supabase';
 
-type Step = 'intro' | 'quiz' | 'result';
+type Step = 'intro' | 'quiz' | 'form' | 'result';
 
 const LEVEL_DATA = {
   'A1/A2': {
     label: 'A1/A2',
     name: 'Beginner',
-    color: 'blue',
     title: 'You are A1/A2 – Beginner',
     explanation: 'Tu connais quelques mots, mais la grammaire et les structures de base restent fragiles. C\'est le meilleur moment pour construire des fondations solides, sans mauvaises habitudes.',
     trigger: 'La bonne nouvelle ? Avec la bonne méthode, les progrès à ce niveau arrivent vite. Vraiment vite. 🚀',
@@ -22,7 +21,6 @@ const LEVEL_DATA = {
   'B1': {
     label: 'B1',
     name: 'Intermediate',
-    color: 'yellow',
     title: 'You are B1 – Intermediate',
     explanation: 'Tu peux te débrouiller en anglais, mais les erreurs de grammaire et les expressions peu naturelles trahissent encore ton niveau. Tu es plus proche du B2 que tu ne le crois.',
     trigger: 'Tu es beaucoup plus proche du niveau suivant que tu ne le crois… 👀',
@@ -32,7 +30,6 @@ const LEVEL_DATA = {
   'B2': {
     label: 'B2',
     name: 'Upper-Intermediate',
-    color: 'orange',
     title: 'You are B2 – Upper-Intermediate',
     explanation: 'Tu maîtrises bien l\'anglais. Mais à l\'oral, il manque encore ce petit quelque chose : la fluidité, le naturel, l\'aisance spontanée. C\'est exactement là qu\'on intervient.',
     trigger: 'Le C1 est à portée de main. Il suffit de travailler les bons points. 🎯',
@@ -42,7 +39,6 @@ const LEVEL_DATA = {
   'C1': {
     label: 'C1',
     name: 'Advanced',
-    color: 'green',
     title: 'You are C1 – Advanced',
     explanation: 'Excellent niveau ! Tu maîtrises l\'anglais avec aisance. Quelques séances suffiront pour peaufiner ton accent, ta spontanéité et tes expressions idiomatiques.',
     trigger: 'Même les meilleurs ont une marge de progression. Et on adore travailler avec les bons niveaux 😉',
@@ -85,7 +81,7 @@ async function sendResultEmail(
       }),
     });
   } catch {
-    // Silent fail — data already saved in Supabase
+    // silent
   }
 }
 
@@ -95,61 +91,54 @@ export function LevelTest() {
   const [score, setScore] = useState(0);
   const [wrongCategories, setWrongCategories] = useState<string[]>([]);
   const [submitting, setSubmitting] = useState(false);
-  const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
-    email: '',
-    phone: '',
-  });
+  const [formData, setFormData] = useState({ firstName: '', lastName: '', email: '', phone: '' });
 
-  const handleStart = (e: FormEvent) => {
-    e.preventDefault();
-    setStep('quiz');
-  };
-
-  const handleAnswer = async (selectedIndex: number) => {
+  const handleAnswer = (selectedIndex: number) => {
     const q = questions[currentIndex];
     const isCorrect = selectedIndex === q.correct;
     const newScore = isCorrect ? score + 1 : score;
     const newWrong = isCorrect ? wrongCategories : [...wrongCategories, q.category];
 
+    setScore(newScore);
+    setWrongCategories(newWrong);
+
     if (currentIndex < questions.length - 1) {
-      setScore(newScore);
-      setWrongCategories(newWrong);
       setCurrentIndex(prev => prev + 1);
     } else {
-      // Last question — compute result and save
-      setScore(newScore);
-      setWrongCategories(newWrong);
-      setSubmitting(true);
-      const level = getLevel(newScore);
-      const weakPoints = [...new Set(newWrong)].slice(0, 3);
-
-      try {
-        await saveLead({
-          first_name: formData.firstName,
-          last_name: formData.lastName,
-          email: formData.email,
-          phone: formData.phone || undefined,
-          score: newScore,
-          total: questions.length,
-          level: `${level.label} – ${level.name}`,
-        });
-      } catch { /* silent */ }
-
-      await sendResultEmail(
-        formData.firstName,
-        formData.lastName,
-        formData.email,
-        formData.phone,
-        newScore,
-        `${level.label} – ${level.name}`,
-        weakPoints
-      );
-
-      setSubmitting(false);
-      setStep('result');
+      setStep('form');
     }
+  };
+
+  const handleFormSubmit = async (e: FormEvent) => {
+    e.preventDefault();
+    setSubmitting(true);
+    const level = getLevel(score);
+    const weakPoints = [...new Set(wrongCategories)].slice(0, 3);
+
+    try {
+      await saveLead({
+        first_name: formData.firstName,
+        last_name: formData.lastName,
+        email: formData.email,
+        phone: formData.phone || undefined,
+        score,
+        total: questions.length,
+        level: `${level.label} – ${level.name}`,
+      });
+    } catch { /* silent */ }
+
+    await sendResultEmail(
+      formData.firstName,
+      formData.lastName,
+      formData.email,
+      formData.phone,
+      score,
+      `${level.label} – ${level.name}`,
+      weakPoints
+    );
+
+    setSubmitting(false);
+    setStep('result');
   };
 
   const level = getLevel(score);
@@ -171,80 +160,31 @@ export function LevelTest() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
-              className="bg-white rounded-[2rem] p-6 sm:p-10 shadow-xl border border-gray-100"
+              className="bg-white rounded-[2rem] p-6 sm:p-10 shadow-xl border border-gray-100 text-center"
             >
-              <div className="text-center mb-8">
-                <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-yellow-50 mb-6">
-                  <BookOpen className="h-8 w-8 text-yellow-700" />
-                </div>
-                <div className="inline-flex items-center gap-2 bg-[var(--color-bee-yellow)] text-[var(--color-bee-black)] px-4 py-1 rounded-full text-xs font-bold mb-4">
-                  GRATUIT
-                </div>
-                <h1 className="font-heading text-2xl sm:text-4xl font-extrabold text-[var(--color-bee-black)] mb-3">
-                  Testez votre niveau d'anglais
-                </h1>
-                <p className="text-gray-500 text-base sm:text-lg mb-4 max-w-xl mx-auto">
-                  10 questions pour savoir exactement où vous en êtes, et ce qu'il faut travailler.
-                </p>
-                <div className="flex items-center justify-center gap-6 text-sm text-gray-400">
-                  <span className="flex items-center gap-1.5"><Target className="h-4 w-4" /> 10 questions</span>
-                  <span className="flex items-center gap-1.5"><CheckCircle2 className="h-4 w-4" /> ~3 minutes</span>
-                </div>
+              <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-yellow-50 mb-6">
+                <BookOpen className="h-8 w-8 text-yellow-700" />
               </div>
-
-              <form onSubmit={handleStart} className="space-y-4 max-w-md mx-auto">
-                <div className="grid grid-cols-2 gap-3">
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">Prénom</label>
-                    <input
-                      type="text"
-                      required
-                      value={formData.firstName}
-                      onChange={e => setFormData(f => ({ ...f, firstName: e.target.value }))}
-                      placeholder="Jean"
-                      className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-[var(--color-bee-yellow)] focus:border-transparent outline-none text-sm"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">Nom</label>
-                    <input
-                      type="text"
-                      required
-                      value={formData.lastName}
-                      onChange={e => setFormData(f => ({ ...f, lastName: e.target.value }))}
-                      placeholder="Dupont"
-                      className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-[var(--color-bee-yellow)] focus:border-transparent outline-none text-sm"
-                    />
-                  </div>
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Email</label>
-                  <input
-                    type="email"
-                    required
-                    value={formData.email}
-                    onChange={e => setFormData(f => ({ ...f, email: e.target.value }))}
-                    placeholder="jean.dupont@email.com"
-                    className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-[var(--color-bee-yellow)] focus:border-transparent outline-none text-sm"
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Téléphone <span className="text-gray-400 font-normal">(optionnel)</span></label>
-                  <input
-                    type="tel"
-                    value={formData.phone}
-                    onChange={e => setFormData(f => ({ ...f, phone: e.target.value }))}
-                    placeholder="06 12 34 56 78"
-                    className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-[var(--color-bee-yellow)] focus:border-transparent outline-none text-sm"
-                  />
-                </div>
-                <Button type="submit" size="lg" className="w-full h-14 text-lg rounded-full shadow-lg shadow-yellow-500/15 mt-2">
-                  Commencer mon test GRATUIT <ArrowRight className="ml-2 h-5 w-5" />
-                </Button>
-                <p className="text-xs text-center text-gray-400">
-                  Vos résultats vous seront envoyés par email. Données sécurisées, jamais partagées.
-                </p>
-              </form>
+              <div className="inline-flex items-center gap-2 bg-[var(--color-bee-yellow)] text-[var(--color-bee-black)] px-4 py-1 rounded-full text-xs font-bold mb-4">
+                GRATUIT
+              </div>
+              <h1 className="font-heading text-2xl sm:text-4xl font-extrabold text-[var(--color-bee-black)] mb-3">
+                Testez votre niveau d'anglais
+              </h1>
+              <p className="text-gray-500 text-base sm:text-lg mb-6 max-w-xl mx-auto">
+                10 questions pour savoir exactement où vous en êtes, et ce qu'il faut travailler.
+              </p>
+              <div className="flex items-center justify-center gap-6 text-sm text-gray-400 mb-8">
+                <span className="flex items-center gap-1.5"><Target className="h-4 w-4" /> 10 questions</span>
+                <span className="flex items-center gap-1.5"><CheckCircle2 className="h-4 w-4" /> ~3 minutes</span>
+              </div>
+              <Button
+                size="lg"
+                onClick={() => setStep('quiz')}
+                className="h-14 px-10 text-lg rounded-full w-full sm:w-auto shadow-lg shadow-yellow-500/15 hover:-translate-y-0.5 transition-all duration-300"
+              >
+                Commencer mon test GRATUIT <ArrowRight className="ml-2 h-5 w-5" />
+              </Button>
             </motion.div>
           )}
 
@@ -283,9 +223,8 @@ export function LevelTest() {
                 {questions[currentIndex].options.map((option, idx) => (
                   <button
                     key={idx}
-                    onClick={() => !submitting && handleAnswer(idx)}
-                    disabled={submitting}
-                    className="flex items-center justify-between p-4 sm:p-5 rounded-xl border-2 border-gray-100 hover:border-[var(--color-bee-yellow)] hover:bg-yellow-50/50 transition-all duration-200 text-left group disabled:opacity-50"
+                    onClick={() => handleAnswer(idx)}
+                    className="flex items-center justify-between p-4 sm:p-5 rounded-xl border-2 border-gray-100 hover:border-[var(--color-bee-yellow)] hover:bg-yellow-50/50 transition-all duration-200 text-left group"
                   >
                     <span className="flex items-center gap-4">
                       <span className="w-8 h-8 rounded-lg bg-gray-100 group-hover:bg-[var(--color-bee-yellow)] text-gray-500 group-hover:text-[var(--color-bee-black)] flex items-center justify-center text-sm font-bold transition-colors duration-200 flex-shrink-0">
@@ -299,12 +238,90 @@ export function LevelTest() {
                   </button>
                 ))}
               </div>
+            </motion.div>
+          )}
 
-              {submitting && (
-                <p className="text-center text-sm text-gray-400 mt-6 animate-pulse">
-                  Analyse de vos résultats…
+          {/* FORM — juste avant les résultats */}
+          {step === 'form' && (
+            <motion.div
+              key="form"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              className="bg-white rounded-[2rem] p-6 sm:p-10 shadow-xl border border-gray-100"
+            >
+              <div className="text-center mb-8">
+                <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-green-50 mb-5">
+                  <CheckCircle2 className="h-8 w-8 text-green-600" />
+                </div>
+                <h2 className="font-heading text-2xl sm:text-3xl font-extrabold text-[var(--color-bee-black)] mb-3">
+                  Test terminé !
+                </h2>
+                <p className="text-gray-500 text-base max-w-md mx-auto">
+                  Entrez vos coordonnées pour découvrir votre niveau et recevoir votre recommandation personnalisée par email.
                 </p>
-              )}
+              </div>
+
+              <form onSubmit={handleFormSubmit} className="space-y-4 max-w-md mx-auto">
+                <div className="grid grid-cols-2 gap-3">
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">Prénom</label>
+                    <input
+                      type="text"
+                      required
+                      value={formData.firstName}
+                      onChange={e => setFormData(f => ({ ...f, firstName: e.target.value }))}
+                      placeholder="Jean"
+                      className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-[var(--color-bee-yellow)] focus:border-transparent outline-none text-sm"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">Nom</label>
+                    <input
+                      type="text"
+                      required
+                      value={formData.lastName}
+                      onChange={e => setFormData(f => ({ ...f, lastName: e.target.value }))}
+                      placeholder="Dupont"
+                      className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-[var(--color-bee-yellow)] focus:border-transparent outline-none text-sm"
+                    />
+                  </div>
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Email</label>
+                  <input
+                    type="email"
+                    required
+                    value={formData.email}
+                    onChange={e => setFormData(f => ({ ...f, email: e.target.value }))}
+                    placeholder="jean.dupont@email.com"
+                    className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-[var(--color-bee-yellow)] focus:border-transparent outline-none text-sm"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                    Téléphone <span className="text-gray-400 font-normal">(optionnel)</span>
+                  </label>
+                  <input
+                    type="tel"
+                    value={formData.phone}
+                    onChange={e => setFormData(f => ({ ...f, phone: e.target.value }))}
+                    placeholder="06 12 34 56 78"
+                    className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-[var(--color-bee-yellow)] focus:border-transparent outline-none text-sm"
+                  />
+                </div>
+                <Button
+                  type="submit"
+                  size="lg"
+                  disabled={submitting}
+                  className="w-full h-14 text-lg rounded-full shadow-lg shadow-yellow-500/10 mt-2"
+                >
+                  {submitting ? 'Analyse en cours…' : 'Voir mes résultats'} <ArrowRight className="ml-2 h-5 w-5" />
+                </Button>
+                <p className="text-xs text-center text-gray-400">
+                  Données sécurisées, jamais partagées.
+                </p>
+              </form>
             </motion.div>
           )}
 
@@ -316,7 +333,6 @@ export function LevelTest() {
               animate={{ opacity: 1, scale: 1 }}
               className="bg-white rounded-[2rem] p-5 sm:p-8 md:p-10 shadow-xl border border-gray-100"
             >
-              {/* Score + Level header */}
               <div className="flex flex-col sm:flex-row items-center gap-6 sm:gap-10 mb-8 pb-8 border-b border-gray-100">
                 <div className="flex flex-col items-center flex-shrink-0">
                   <span className="text-xs font-bold uppercase tracking-wider text-gray-400 mb-3">Votre score</span>
@@ -353,7 +369,6 @@ export function LevelTest() {
                 </div>
               </div>
 
-              {/* Weak points */}
               {weakPoints.length > 0 && (
                 <div className="mb-6 bg-gray-50 rounded-2xl p-5 border border-gray-100">
                   <div className="flex items-center gap-2 mb-3">
@@ -371,14 +386,12 @@ export function LevelTest() {
                 </div>
               )}
 
-              {/* Psycho trigger */}
               <div className="bg-gradient-to-r from-yellow-50 to-yellow-100/40 rounded-2xl p-5 mb-8 border border-yellow-100 text-center">
                 <p className="font-heading font-bold text-[var(--color-bee-black)] text-base sm:text-lg">
                   {level.trigger}
                 </p>
               </div>
 
-              {/* CTAs */}
               <div className="flex flex-col sm:flex-row gap-3">
                 <Link to={level.pack} className="flex-1">
                   <Button size="lg" className="w-full h-14 rounded-full shadow-lg shadow-yellow-500/15">
