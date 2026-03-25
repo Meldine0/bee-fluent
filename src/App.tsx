@@ -11,6 +11,8 @@ import { Offers } from './pages/Offers';
 import { Booking } from './pages/Booking';
 import { LevelTest } from './pages/LevelTest';
 import { FAQ } from './pages/FAQ';
+import { MentionsLegales } from './pages/MentionsLegales';
+import { CGV } from './pages/CGV';
 
 export default function App() {
   return (
@@ -23,6 +25,8 @@ export default function App() {
           <Route path="reservation" element={<Booking />} />
           <Route path="test-niveau" element={<LevelTest />} />
           <Route path="faq" element={<FAQ />} />
+          <Route path="mentions-legales" element={<MentionsLegales />} />
+          <Route path="cgv" element={<CGV />} />
         </Route>
       </Routes>
     </BrowserRouter>

@@ -41,7 +41,9 @@ export function Layout() {
           scrolled ? 'shadow-lg border-gray-200/50' : 'shadow-sm border-gray-200'
         }`}>
           <Link to="/" className="flex items-center gap-2 pl-2">
-            <Logo className="h-8 w-8 text-[var(--color-bee-black)]" />
+            <div className="logo-3d logo-3d-entrance">
+              <Logo className="h-8 w-8 text-[var(--color-bee-black)]" />
+            </div>
             <span className="font-heading text-xl font-bold tracking-tight text-[var(--color-bee-black)]">
               Bee Fluent.
             </span>
@@ -147,8 +149,8 @@ export function Layout() {
           <div className="pt-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-sm text-gray-500">
             <p>© {new Date().getFullYear()} Bee Fluent. Tous droits réservés.</p>
             <div className="flex gap-6">
-              <Link to="#" className="hover:text-white transition-colors">Mentions légales</Link>
-              <Link to="#" className="hover:text-white transition-colors">CGV</Link>
+              <Link to="/mentions-legales" className="hover:text-white transition-colors">Mentions légales</Link>
+              <Link to="/cgv" className="hover:text-white transition-colors">CGV</Link>
             </div>
           </div>
         </div>
