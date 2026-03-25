@@ -103,7 +103,7 @@ export function Offers() {
         </motion.div>
 
         {/* Pricing cards */}
-        <div className="isolate mx-auto grid max-w-md grid-cols-1 gap-8 lg:mx-0 lg:max-w-none lg:grid-cols-4">
+        <div className="isolate mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 lg:gap-6">
           {tiers.map((tier, tierIdx) => (
             <motion.div
               key={tier.id}
@@ -112,65 +112,62 @@ export function Offers() {
               transition={{ duration: 0.8, delay: tierIdx * 0.15, ease: [0.16, 1, 0.3, 1] }}
               className={cn(
                 tier.mostPopular
-                  ? 'bg-[var(--color-bee-black)] text-white shadow-2xl lg:scale-105 z-10'
+                  ? 'bg-[var(--color-bee-black)] text-white shadow-2xl lg:-translate-y-2 z-10'
                   : 'bg-white text-[var(--color-bee-black)] border border-gray-100 shadow-sm hover:shadow-lg',
-                'rounded-[2rem] p-6 sm:p-10 relative flex flex-col hover:-translate-y-1 transition-all duration-300'
+                'rounded-[1.75rem] p-6 relative flex flex-col hover:-translate-y-1 transition-all duration-300'
               )}
             >
               {tier.mostPopular && (
-                <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-[var(--color-bee-yellow)] text-[var(--color-bee-black)] px-6 py-1.5 rounded-full text-sm font-bold tracking-wide shadow-sm whitespace-nowrap">
+                <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-[var(--color-bee-yellow)] text-[var(--color-bee-black)] px-5 py-1 rounded-full text-xs font-bold tracking-wide shadow-sm whitespace-nowrap">
                   Le plus choisi
                 </div>
               )}
               {tier.badge && (
-                <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-blue-500 text-white px-6 py-1.5 rounded-full text-sm font-bold tracking-wide shadow-sm whitespace-nowrap">
+                <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-blue-500 text-white px-5 py-1 rounded-full text-xs font-bold tracking-wide shadow-sm whitespace-nowrap">
                   {tier.badge}
                 </div>
               )}
 
-              <div className="mb-6">
-                <h3 id={tier.id} className="font-heading text-2xl font-bold mb-3">
+              <div className="mb-5">
+                <h3 id={tier.id} className="font-heading text-xl font-bold mb-2">
                   {tier.name}
                 </h3>
-                <p className={cn(tier.mostPopular ? 'text-gray-400' : 'text-gray-500', 'text-sm leading-relaxed')}>
+                <p className={cn(tier.mostPopular ? 'text-gray-400' : 'text-gray-500', 'text-xs leading-relaxed')}>
                   {tier.description}
                 </p>
               </div>
 
               {/* Price block */}
-              <div className="mb-6 pb-6 border-b border-opacity-20" style={{ borderColor: tier.mostPopular ? 'rgba(255,255,255,0.1)' : '#e5e7eb' }}>
-                {/* Full price */}
-                <div className="flex items-baseline gap-2 mb-2">
-                  <span className={cn(tier.mostPopular ? 'text-gray-500' : 'text-gray-400', 'text-lg line-through')}>
+              <div className="mb-5 pb-5 border-b border-opacity-20" style={{ borderColor: tier.mostPopular ? 'rgba(255,255,255,0.1)' : '#e5e7eb' }}>
+                <div className="flex items-baseline gap-1.5 mb-1">
+                  <span className={cn(tier.mostPopular ? 'text-gray-500' : 'text-gray-400', 'text-sm line-through')}>
                     {tier.price}€
                   </span>
-                  <span className={cn(tier.mostPopular ? 'text-gray-400' : 'text-gray-400', 'text-xs')}>
+                  <span className={cn(tier.mostPopular ? 'text-gray-500' : 'text-gray-400', 'text-xs')}>
                     {tier.unit}
                   </span>
                 </div>
-                {/* CESU price */}
-                <div className="flex items-baseline gap-2">
-                  <span className="text-5xl font-extrabold tracking-tight">{tier.cesuPrice}€</span>
-                  <span className={cn(tier.mostPopular ? 'text-gray-400' : 'text-gray-500', 'text-sm')}>{tier.unit}</span>
+                <div className="flex items-baseline gap-1.5">
+                  <span className="text-4xl font-extrabold tracking-tight">{tier.cesuPrice}€</span>
+                  <span className={cn(tier.mostPopular ? 'text-gray-400' : 'text-gray-500', 'text-xs')}>{tier.unit}</span>
                 </div>
-                {/* CESU label */}
                 <div className={cn(
-                  'mt-3 inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-1 rounded-full',
+                  'mt-2.5 inline-flex items-center gap-1 text-xs font-semibold px-2.5 py-1 rounded-full',
                   tier.mostPopular
                     ? 'bg-green-900/40 text-green-400'
                     : 'bg-green-50 text-green-700'
                 )}>
-                  <ShieldCheck className="h-3.5 w-3.5" />
-                  Après crédit d'impôt (avance immédiate)
+                  <ShieldCheck className="h-3 w-3" />
+                  Crédit d'impôt 50%
                 </div>
               </div>
 
-              <ul role="list" className="space-y-3 text-sm leading-6 flex-1 mb-8">
+              <ul role="list" className="space-y-2.5 text-xs leading-relaxed flex-1 mb-6">
                 {tier.features.map((feature) => (
-                  <li key={feature} className="flex gap-x-3 items-center">
+                  <li key={feature} className="flex gap-x-2.5 items-start">
                     <Check className={cn(
                       tier.mostPopular ? 'text-[var(--color-bee-yellow)]' : 'text-green-500',
-                      'h-4 w-4 flex-shrink-0'
+                      'h-3.5 w-3.5 flex-shrink-0 mt-0.5'
                     )} />
                     <span className={cn(tier.mostPopular ? 'text-gray-300' : 'text-gray-600')}>
                       {feature}
@@ -183,7 +180,7 @@ export function Offers() {
                 <Button
                   variant={tier.mostPopular ? 'primary' : 'outline'}
                   className={cn(
-                    'w-full h-14 text-lg rounded-full',
+                    'w-full h-11 text-sm rounded-full',
                     tier.mostPopular
                       ? 'shadow-lg shadow-yellow-500/20 hover:shadow-xl hover:shadow-yellow-500/30'
                       : 'hover:bg-[var(--color-bee-black)] hover:text-white'

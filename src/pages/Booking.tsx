@@ -235,7 +235,7 @@ export function Booking() {
                   <button
                     key={key}
                     onClick={() => setPackKey(key)}
-                    className={`relative text-left rounded-3xl p-5 sm:p-8 border-2 transition-all duration-200 ${
+                    className={`relative text-left rounded-2xl p-5 border-2 transition-all duration-200 ${
                       isSelected
                         ? 'border-[var(--color-bee-yellow)] bg-[var(--color-bee-black)] text-white shadow-xl'
                         : 'border-gray-200 bg-white hover:border-yellow-300 hover:shadow-md'
@@ -259,10 +259,10 @@ export function Booking() {
                     </div>
                     <div className="mb-6">
                       <div className="flex items-baseline gap-2 flex-wrap">
-                        <span className={`text-4xl font-extrabold font-heading ${isSelected ? 'text-[var(--color-bee-yellow)]' : 'text-[var(--color-bee-black)]'}`}>
+                        <span className={`text-3xl font-extrabold font-heading ${isSelected ? 'text-[var(--color-bee-yellow)]' : 'text-[var(--color-bee-black)]'}`}>
                           {p.cesuPrice}
                         </span>
-                        <span className={`text-sm ${isSelected ? 'text-gray-400' : 'text-gray-400'}`}>{p.unit}</span>
+                        <span className={`text-xs ${isSelected ? 'text-gray-400' : 'text-gray-400'}`}>{p.unit}</span>
                       </div>
                       <div className="mt-1 flex items-center gap-2 flex-wrap">
                         <span className={`text-sm line-through ${isSelected ? 'text-gray-500' : 'text-gray-400'}`}>{p.price}</span>
