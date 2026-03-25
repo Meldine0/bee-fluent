@@ -6,6 +6,18 @@ import { Check, Video, MapPin, BadgePercent, ShieldCheck, Zap } from 'lucide-rea
 
 const tiers = [
   {
+    name: 'Cours Express',
+    id: 'tier-express',
+    href: '/reservation?pack=express',
+    price: '20',
+    cesuPrice: '10',
+    unit: '/ 20 min',
+    description: 'Un point rapide, une règle à revoir, un oral à préparer en urgence. Efficace, direct, sans perdre de temps.',
+    features: ['20 minutes de coaching ciblé', 'Un seul objectif par séance', 'Parfait avant un exam ou entretien', 'En visio uniquement'],
+    mostPopular: false,
+    badge: 'Nouveau',
+  },
+  {
     name: 'Séance Découverte',
     id: 'tier-single',
     href: '/reservation?pack=single',
@@ -15,6 +27,7 @@ const tiers = [
     description: 'Idéal pour tester, pour un besoin ponctuel ou pour un enfant qui commence.',
     features: ['1 heure de coaching oral', 'Diagnostic de niveau', 'Correction en temps réel', 'Compte-rendu de séance'],
     mostPopular: false,
+    badge: null,
   },
   {
     name: 'Pack Intensif',
@@ -32,6 +45,7 @@ const tiers = [
       'Accès prioritaire aux créneaux',
     ],
     mostPopular: true,
+    badge: null,
   },
   {
     name: 'Immersion Totale',
@@ -49,6 +63,7 @@ const tiers = [
       'Disponible sur WhatsApp entre les séances',
     ],
     mostPopular: false,
+    badge: null,
   },
 ];
 
@@ -88,7 +103,7 @@ export function Offers() {
         </motion.div>
 
         {/* Pricing cards */}
-        <div className="isolate mx-auto grid max-w-md grid-cols-1 gap-8 lg:mx-0 lg:max-w-none lg:grid-cols-3">
+        <div className="isolate mx-auto grid max-w-md grid-cols-1 gap-8 lg:mx-0 lg:max-w-none lg:grid-cols-4">
           {tiers.map((tier, tierIdx) => (
             <motion.div
               key={tier.id}
@@ -105,6 +120,11 @@ export function Offers() {
               {tier.mostPopular && (
                 <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-[var(--color-bee-yellow)] text-[var(--color-bee-black)] px-6 py-1.5 rounded-full text-sm font-bold tracking-wide shadow-sm whitespace-nowrap">
                   Le plus choisi
+                </div>
+              )}
+              {tier.badge && (
+                <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-blue-500 text-white px-6 py-1.5 rounded-full text-sm font-bold tracking-wide shadow-sm whitespace-nowrap">
+                  {tier.badge}
                 </div>
               )}
 
@@ -226,7 +246,7 @@ export function Offers() {
             {/* 3 variantes marketing */}
             <div className="mt-8 pt-8 border-t border-gray-100 grid grid-cols-1 sm:grid-cols-3 gap-4">
               {[
-                { label: 'Vous ne payez que…', example: '30€ la séance au lieu de 60€' },
+                { label: 'Vous ne payez que…', example: '10€ le cours express de 20min' },
                 { label: "Après crédit d'impôt…", example: '100€ pour 5 séances complètes' },
                 { label: 'Votre coût réel…', example: '190€ pour 10h de coaching' },
               ].map((v, i) => (
