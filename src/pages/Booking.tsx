@@ -9,7 +9,19 @@ import { useSearchParams } from 'react-router-dom';
 
 const DEFAULT_TIMES = ['09:00', '10:30', '14:00', '15:30', '17:00'];
 
-const PACKS: Record<string, { name: string; sessions: number; price: string; cesuPrice: string; unit: string; description: string; features: string[]; popular: boolean }> = {
+const PACKS: Record<string, { name: string; sessions: number; price: string; cesuPrice: string; unit: string; description: string; features: string[]; popular: boolean; badge?: string; visioOnly?: boolean }> = {
+  express: {
+    name: 'Cours Express',
+    sessions: 1,
+    price: '20€',
+    cesuPrice: '10€',
+    unit: '/ 20 min',
+    description: 'Un point rapide, une règle à revoir, un oral à préparer en urgence.',
+    features: ['20 minutes de coaching ciblé', 'Un seul objectif par séance', 'Parfait avant un exam ou entretien', 'En visio uniquement'],
+    popular: false,
+    badge: 'Nouveau',
+    visioOnly: true,
+  },
   single: {
     name: 'Séance Découverte',
     sessions: 1,
@@ -58,6 +70,7 @@ export function Booking() {
 
   const [packKey, setPackKey] = useState<string>(initialPackKey || 'single');
   const pack = PACKS[packKey] || PACKS.single;
+  const isVisioOnly = pack.visioOnly === true;
 
   // Step 0 = choix du forfait, 1 = calendrier, 2 = confirmation, 3 = succès
   const [step, setStep] = useState<0 | 1 | 2 | 3>(initialPackKey ? 1 : 0);
@@ -215,7 +228,7 @@ export function Booking() {
               <p className="text-lg text-gray-500">Sélectionnez le forfait qui vous correspond avant de choisir vos créneaux.</p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 mb-8 sm:mb-10">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-8 sm:mb-10">
               {(Object.entries(PACKS) as [string, typeof PACKS[string]][]).map(([key, p]) => {
                 const isSelected = packKey === key;
                 return (
@@ -231,6 +244,11 @@ export function Booking() {
                     {p.popular && (
                       <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-[var(--color-bee-yellow)] text-[var(--color-bee-black)] text-xs font-bold px-4 py-1 rounded-full">
                         Le plus choisi
+                      </span>
+                    )}
+                    {p.badge && !p.popular && (
+                      <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-blue-500 text-white text-xs font-bold px-4 py-1 rounded-full">
+                        {p.badge}
                       </span>
                     )}
                     <div className="mb-4">
@@ -555,15 +573,19 @@ export function Booking() {
                       </button>
                       <button
                         type="button"
-                        onClick={() => setSessionType('presentiel')}
+                        onClick={() => !isVisioOnly && setSessionType('presentiel')}
+                        disabled={isVisioOnly}
                         className={`p-4 border-2 rounded-xl flex flex-col items-center gap-2 transition-all duration-200 ${
-                          sessionType === 'presentiel'
+                          isVisioOnly
+                            ? 'border-gray-100 bg-gray-50 opacity-40 cursor-not-allowed'
+                            : sessionType === 'presentiel'
                             ? 'border-[var(--color-bee-yellow)] bg-yellow-50 shadow-sm'
                             : 'border-gray-200 hover:border-gray-300'
                         }`}
                       >
-                        <MapPin className={`h-6 w-6 ${sessionType === 'presentiel' ? 'text-red-500' : 'text-gray-400'}`} />
+                        <MapPin className={`h-6 w-6 ${sessionType === 'presentiel' && !isVisioOnly ? 'text-red-500' : 'text-gray-400'}`} />
                         <span className="text-sm font-medium">Présentiel</span>
+                        {isVisioOnly && <span className="text-xs text-gray-400">Non disponible</span>}
                       </button>
                     </div>
                   </div>
